@@ -1,9 +1,9 @@
+import React from 'react';
 
-
-function App() {
+const App: React.FC = () => {
   return (
     <div >
-      Hello world
+      Hello world from Typescript
     </div>
   );
 }
