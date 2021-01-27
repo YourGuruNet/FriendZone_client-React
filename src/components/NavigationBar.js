@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Logo1 from '../assets/logo1.png';
 import { GiMoon } from 'react-icons/gi';
@@ -6,7 +6,7 @@ import { BsSun } from 'react-icons/bs';
 
 const NavigationBar = () => {
   //Dark mode
-  const [darkMode, setDarkMode] = React.useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add('dark');
@@ -17,20 +17,22 @@ const NavigationBar = () => {
 
   return (
     <Header>
-      <div className='navigation_container'>
-        <img src={Logo1} alt='friend zone' />
-        <ul className='navigation_list'>
-          <li className='navigation_list-item'>Home</li>
-          <li className='navigation_list-item'>Activities</li>
-          <li className='navigation_list-item'>
-            <button
-              className='dark_mode-button'
-              onClick={() => setDarkMode(!darkMode)}
-            >
-              {darkMode ? <BsSun /> : <GiMoon />}
-            </button>
-          </li>
-        </ul>
+      <div className={darkMode ? 'light_mode dark_mode' : ' light_mode'}>
+        <div className='navigation_container'>
+          <img src={Logo1} alt='friend zone' />
+          <ul className='navigation_list'>
+            <li className='navigation_list-item'>Home</li>
+            <li className='navigation_list-item'>Activities</li>
+            <li className='navigation_list-item'>
+              <button
+                className='dark_mode-button'
+                onClick={() => setDarkMode(!darkMode)}
+              >
+                {darkMode ? <BsSun /> : <GiMoon />}
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </Header>
   );
@@ -39,12 +41,18 @@ const NavigationBar = () => {
 export default NavigationBar;
 
 const Header = styled.header`
-  background: var(--darkGradient);
   position: fixed;
   width: 100vw;
   z-index: 9999;
-  box-shadow: 0.2rem -3rem 3rem 3rem var(--baseColor-Dark-2);
 
+  .light_mode {
+    background: var(--lightGradient);
+    box-shadow: 0.2rem -3rem 3rem 3rem var(--baseColor-Dark-2);
+  }
+  .dark_mode {
+    background: var(--darkGradient);
+    box-shadow: 0.5rem -4rem 3rem 3rem var(--baseColor);
+  }
   .navigation_container {
     margin: 0 auto;
     width: 120rem;

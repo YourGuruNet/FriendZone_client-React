@@ -20,7 +20,8 @@
   --baseColor-Light-2: #373276;
   --alert: #f54712;
   --success: #88ff00;
-  --darkGradient: linear-gradient(to left, rgb(89, 84, 148), rgb(30, 25, 80));
+  --lightGradient: linear-gradient(to left, rgb(89, 84, 148), rgb(30, 25, 80));
+  --darkGradient: linear-gradient(to left, rgb(12, 8, 59), rgb(30, 25, 89));
 }
 
 *,
