@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+/* font-family: 'Nerko One', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;500;600;700&display=swap');
+/* font-family: 'Oswald', sans-serif; */
+
+/*Media query's converted to em*/
+/* Xpx / 16 = em
+ 75em - 1200px
+/68.75em - 1100px
+56.25em - 900px
+43.75em - 700px
+25em - 400px
+*/
+
+:root {
+  --baseColor: #827fb2;
+  --baseColor-Dark: #1e1959;
+  --baseColor-Dark-2: #0c083b;
+  --baseColor-Light: #595494;
+  --baseColor-Light-2: #373276;
+  --alert: #f54712;
+  --success: #88ff00;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--baseColor);
+  color: var(--baseColor-Dark-2);
+}

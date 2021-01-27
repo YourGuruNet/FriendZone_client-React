@@ -3,21 +3,23 @@ import axios from 'axios';
 
 class App extends Component {
   state = {
-    values: [],
+    activities: [],
   };
   componentDidMount() {
-    axios.get('http://localhost:5000/api/values').then((response) => {
+    axios.get('http://localhost:5000/api/activities').then((response) => {
       this.setState({
-        values: response.data,
+        activities: response.data,
       });
+      //console.log(response);
     });
   }
+
   render() {
     return (
       <div>
         <ul>
-          {this.state.values.map((value) => {
-            return <li key={value.id}>{value.name}</li>;
+          {this.state.activities.map((activity) => {
+            return <li key={activity.id}>{activity.title}</li>;
           })}
         </ul>
       </div>
