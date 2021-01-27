@@ -21,7 +21,7 @@
   --alert: #f54712;
   --success: #88ff00;
   --lightGradient: linear-gradient(to left, rgb(89, 84, 148), rgb(30, 25, 80));
-  --darkGradient: linear-gradient(to left, rgb(12, 8, 59), rgb(30, 25, 89));
+  --darkGradient: linear-gradient(to left, rgb(55, 50, 118), rgb(30, 25, 89));
 }
 
 *,

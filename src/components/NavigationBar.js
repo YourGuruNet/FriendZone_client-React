@@ -51,7 +51,7 @@ const Header = styled.header`
   }
   .dark_mode {
     background: var(--darkGradient);
-    box-shadow: 0.5rem -4rem 3rem 3rem var(--baseColor);
+    box-shadow: 0.2rem -3rem 3rem 3rem var(--baseColor-Light-2);
   }
   .navigation_container {
     margin: 0 auto;
