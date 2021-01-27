@@ -55,7 +55,7 @@ const Header = styled.header`
   }
   .navigation_container {
     margin: 0 auto;
-    width: 120rem;
+    max-width: 120rem;
     min-height: 2rem;
     display: flex;
     justify-content: space-between;

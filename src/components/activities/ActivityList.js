@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const ActivityList = ({ activities }) => {
   return (
-    <Fragment>
+    <ActivitySection>
       {activities.map((activity) => {
         return (
-          <Section key={activity.id}>
+          <div className='activity_item' key={activity.id}>
             <h1 className='title'>{activity.title}</h1>
             <p className='date'>{activity.date}</p>
             <p>{activity.description}</p>
@@ -18,22 +18,23 @@ const ActivityList = ({ activities }) => {
               <p className='hashtag'>#{activity.category}</p>
               <button className='details_button'>Details</button>
             </div>
-          </Section>
+          </div>
         );
       })}
-    </Fragment>
+    </ActivitySection>
   );
 };
 
 export default ActivityList;
 
-const Section = styled.section`
-  background-color: var(--baseColor-Light);
-  display: block;
-  max-width: 50rem;
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem 0.5rem 0 0.5rem;
+const ActivitySection = styled.section`
+  .activity_item {
+    background-color: var(--baseColor-Light);
+    display: block;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0.5rem;
+  }
 
   .title {
     font-size: 2rem;
