@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
-
+import styled from 'styled-components';
+import ActivityDashboard from '../components/activities/ActivityDashboard';
 // Setup initial states
 const defaultState = {
   loading: true,
@@ -47,13 +48,9 @@ const Activities = ({ getActivities, loading, activities }) => {
     return <Loading />;
   } else {
     return (
-      <div>
-        <ul>
-          {activities.map((activity) => {
-            return <li key={activity.id}>{activity.title}</li>;
-          })}
-        </ul>
-      </div>
+      <ActivitiesSection>
+        <ActivityDashboard activities={activities} />
+      </ActivitiesSection>
     );
   }
 };
@@ -70,3 +67,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Activities);
+
+const ActivitiesSection = styled.section`
+  display: block;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 9rem;
+`;
