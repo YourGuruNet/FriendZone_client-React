@@ -42,7 +42,7 @@ const Activities = ({ getActivities, loading, activities }) => {
   // console.log(activities);
   useEffect(() => {
     getActivities();
-  }, []);
+  }, [getActivities]);
 
   if (loading) {
     return <Loading />;

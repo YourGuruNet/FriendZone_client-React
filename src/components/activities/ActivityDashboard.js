@@ -1,13 +1,10 @@
 import React from 'react';
+import ActivityList from './ActivityList';
 
 const ActivityDashboard = ({ activities }) => {
   return (
     <div>
-      <ul>
-        {activities.map((activity) => {
-          return <li key={activity.id}>{activity.title}</li>;
-        })}
-      </ul>
+      <ActivityList activities={activities} />
     </div>
   );
 };
