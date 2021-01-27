@@ -7,7 +7,7 @@ const ActivityList = ({ activities }) => {
       {activities.map((activity) => {
         return (
           <Section key={activity.id}>
-            <h1>{activity.title}</h1>
+            <h1 className='title'>{activity.title}</h1>
             <p className='date'>{activity.date}</p>
             <p>{activity.description}</p>
             <div className='location'>
@@ -35,13 +35,19 @@ const Section = styled.section`
   padding: 1rem;
   border-radius: 0.5rem 0.5rem 0 0.5rem;
 
+  .title {
+    font-size: 2rem;
+  }
+
   .location {
     display: flex;
     opacity: 0.8;
   }
+
   .location-item {
     letter-spacing: 0.1rem;
   }
+
   .location-item:last-child {
     padding-left: 0.5rem;
   }
@@ -67,6 +73,7 @@ const Section = styled.section`
     display: flex;
     justify-content: flex-end;
   }
+
   .details_button {
     padding: 0.2rem 0.5rem;
     margin-left: 1rem;
