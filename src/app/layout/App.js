@@ -36,7 +36,7 @@ export const ActivitiesReducer = (state = defaultState, action) => {
 };
 
 const App = ({ getActivities, loading, activities }) => {
-  console.log(activities);
+  // console.log(activities);
   React.useEffect(() => {
     getActivities();
   }, [getActivities]);
