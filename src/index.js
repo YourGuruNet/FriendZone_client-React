@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './app/layout/styles.css';
-import App from './app/layout/App';
+import App, { ActivitiesReducer } from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+
+// Store setup
+const middleware = [thunk];
+const store = createStore(
+  combineReducers({
+    activitiesState: ActivitiesReducer,
+  }),
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
