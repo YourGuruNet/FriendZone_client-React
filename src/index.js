@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './app/layout/styles.css';
-import App, { ActivitiesReducer } from './app/layout/App';
+import { ActivitiesReducer } from './pages/Activities';
 import reportWebVitals from './reportWebVitals';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import App from './app/layout/App';
 
 // Store setup
 const middleware = [thunk];

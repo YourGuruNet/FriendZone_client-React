@@ -20,6 +20,7 @@
   --baseColor-Light-2: #373276;
   --alert: #f54712;
   --success: #88ff00;
+  --darkGradient: linear-gradient(to left, rgb(89, 84, 148), rgb(30, 25, 80));
 }
 
 *,
@@ -42,4 +43,12 @@ body {
   margin: 0 auto;
   background-color: var(--baseColor);
   color: var(--baseColor-Dark-2);
+}
+
+/* Dark mode */
+.dark {
+  background: var(--baseColor-Dark-2);
+  color: var(--baseColor);
+}
+.dark h1 {
 }
