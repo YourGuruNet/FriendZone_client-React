@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
@@ -14,11 +14,12 @@ export const GET_ACTIVITIES = 'GET_ACTIVITIES ';
 export const setLoading = () => {
   return { type: SET_LOADING };
 };
+
 export const getActivities = () => {
   return async function (dispatch) {
     dispatch(setLoading());
     await axios.get('http://localhost:5000/api/activities').then((response) => {
-      dispatch({ type: GET_ACTIVITIES, payload: response });
+      dispatch({ type: GET_ACTIVITIES, payload: response.data });
     });
   };
 };
@@ -37,17 +38,17 @@ export const ActivitiesReducer = (state = defaultState, action) => {
 
 const App = ({ getActivities, loading, activities }) => {
   // console.log(activities);
-  React.useEffect(() => {
+  useEffect(() => {
     getActivities();
-  }, [getActivities]);
+  }, []);
 
   if (loading) {
-    return <h2 className='section-title'>Loading...</h2>;
+    return <h2>Loading...</h2>;
   } else {
     return (
       <div>
         <ul>
-          {activities.data.map((activity) => {
+          {activities.map((activity) => {
             return <li key={activity.id}>{activity.title}</li>;
           })}
         </ul>
