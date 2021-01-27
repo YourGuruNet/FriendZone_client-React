@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import Loading from '../components/Loading';
 
 // Setup initial states
 const defaultState = {
@@ -43,7 +44,7 @@ const Activities = ({ getActivities, loading, activities }) => {
   }, []);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loading />;
   } else {
     return (
       <div>
