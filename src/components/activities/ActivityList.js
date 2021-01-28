@@ -85,9 +85,13 @@ const ActivitySection = styled.section`
     font-size: 1.2rem;
     transition: all 0.3s;
     cursor: pointer;
+    outline: none;
     :hover {
       background-color: var(--baseColor);
       color: var(--baseColor-Dark-2);
+    }
+    :active {
+      transform: scale(0.9);
     }
   }
 `;

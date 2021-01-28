@@ -76,6 +76,9 @@ const Header = styled.header`
     :hover {
       border: solid 0.1rem var(--baseColor);
     }
+    :active {
+      transform: scale(0.9);
+    }
   }
   .new_activity {
     border: solid 0.1rem var(--baseColor);
