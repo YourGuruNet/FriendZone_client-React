@@ -44,7 +44,7 @@ const Section = styled.section`
     top: 0;
     font-size: 2rem;
     padding: 1rem 1.5rem;
-    background-color: var(--baseColor-Dark);
+    background-color: var(--baseColor-Light-2);
     color: var(--baseColor-Light);
   }
 

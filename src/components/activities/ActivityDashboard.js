@@ -2,12 +2,16 @@ import React from 'react';
 import ActivityDetails from './ActivityDetails';
 import ActivityList from './ActivityList';
 import styled from 'styled-components';
+import ActivityForm from './ActivityForm';
 
 const ActivityDashboard = ({ activities }) => {
   return (
     <Section>
       <ActivityList activities={activities} />
-      <ActivityDetails />
+      <div>
+        <ActivityDetails />
+        <ActivityForm />
+      </div>
     </Section>
   );
 };
