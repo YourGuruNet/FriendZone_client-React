@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-
-const ActivityList = ({ activities }) => {
+import { connect } from 'react-redux';
+import { getActivity } from '../../pages/Activities';
+const ActivityList = ({ activities, getActivity }) => {
   return (
     <ActivitySection>
       {activities.map((activity) => {
+        //console.log(activity.id);
         return (
           <div className='activity_item' key={activity.id}>
             <h1 className='title'>{activity.title}</h1>
@@ -16,7 +18,12 @@ const ActivityList = ({ activities }) => {
             </div>
             <div className='button_container'>
               <p className='hashtag'>#{activity.category}</p>
-              <button className='details_button'>Details</button>
+              <button
+                className='details_button'
+                onClick={() => getActivity(activity)}
+              >
+                Details
+              </button>
             </div>
           </div>
         );
@@ -25,7 +32,19 @@ const ActivityList = ({ activities }) => {
   );
 };
 
-export default ActivityList;
+const mapStateToProps = ({
+  activitiesState: { activities, loading, selectedActivity },
+}) => {
+  return { loading, activities, selectedActivity };
+};
+
+// Functions
+const mapDispatchToProps = () => {
+  return {
+    getActivity,
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityList);
 
 const ActivitySection = styled.section`
   .activity_item {

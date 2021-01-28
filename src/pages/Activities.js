@@ -8,11 +8,13 @@ import ActivityDashboard from '../components/activities/ActivityDashboard';
 const defaultState = {
   loading: true,
   activities: [],
+  selectedActivity: [],
 };
+console.log(defaultState.selectedActivity);
 
 export const SET_LOADING = 'SET_LOADING';
-export const GET_ACTIVITIES = 'GET_ACTIVITIES ';
-
+export const GET_ACTIVITIES = 'GET_ACTIVITIES';
+export const GET_ACTIVITY = 'GET_ACTIVITY';
 export const setLoading = () => {
   return { type: SET_LOADING };
 };
@@ -26,20 +28,38 @@ export const getActivities = () => {
   };
 };
 
+export const getActivity = (activity) => {
+  console.log(activity);
+  return {
+    type: GET_ACTIVITY,
+    payload: { selectedActivity: activity },
+  };
+};
+
 // Reducer setup
-export const ActivitiesReducer = (state = defaultState, action) => {
+export const ActivitiesReducer = (state = defaultState, action, id) => {
   switch (action.type) {
     case SET_LOADING:
       return { ...state, loading: true };
     case GET_ACTIVITIES:
       return { ...state, loading: false, activities: action.payload };
+    case GET_ACTIVITY:
+      return {
+        ...state,
+        selectedActivity: action.payload,
+      };
     default:
       return state;
   }
 };
 
-const Activities = ({ getActivities, loading, activities }) => {
-  // console.log(activities);
+const Activities = ({
+  getActivities,
+  loading,
+  activities,
+  selectedActivity,
+}) => {
+  console.log(selectedActivity);
   useEffect(() => {
     getActivities();
   }, [getActivities]);
@@ -55,8 +75,10 @@ const Activities = ({ getActivities, loading, activities }) => {
   }
 };
 
-const mapStateToProps = ({ activitiesState: { activities, loading } }) => {
-  return { loading, activities };
+const mapStateToProps = ({
+  activitiesState: { activities, loading, selectedActivity },
+}) => {
+  return { loading, activities, selectedActivity };
 };
 
 // Functions
