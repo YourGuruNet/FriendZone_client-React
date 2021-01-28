@@ -10,7 +10,6 @@ const defaultState = {
   activities: [],
   selectedActivity: [],
 };
-console.log(defaultState.selectedActivity);
 
 export const SET_LOADING = 'SET_LOADING';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
@@ -53,13 +52,7 @@ export const ActivitiesReducer = (state = defaultState, action, id) => {
   }
 };
 
-const Activities = ({
-  getActivities,
-  loading,
-  activities,
-  selectedActivity,
-}) => {
-  console.log(selectedActivity);
+const Activities = ({ getActivities, loading, activities }) => {
   useEffect(() => {
     getActivities();
   }, [getActivities]);

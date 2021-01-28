@@ -13,7 +13,7 @@ const ActivityForm = () => {
           <div className='section'>
             <span>1</span>About activity:
           </div>
-          <div class='inner-wrap'>
+          <div className='inner-wrap'>
             <label>
               Title
               <input type='text' name='title1' />
