@@ -23,6 +23,7 @@ const NavigationBar = () => {
           <ul className='navigation_list'>
             <li className='navigation_list-item'>Home</li>
             <li className='navigation_list-item'>Activities</li>
+            <li className='navigation_list-item new_activity'>new activity</li>
             <li className='navigation_list-item'>
               <button
                 className='dark_mode-button'
@@ -70,6 +71,14 @@ const Header = styled.header`
     list-style: none;
     color: var(--baseColor);
     text-transform: uppercase;
+    border: solid 0.1rem transparent;
+    cursor: pointer;
+    :hover {
+      border: solid 0.1rem var(--baseColor);
+    }
+  }
+  .new_activity {
+    border: solid 0.1rem var(--baseColor);
   }
   .dark_mode-button {
     font-size: 2.2rem;

@@ -75,6 +75,6 @@ const ActivitiesSection = styled.section`
   padding: 9rem;
 
   @media screen and (max-width: 43.75em) {
-    padding: 9rem 0;
+    padding: 9rem 1rem;
   }
 `;
