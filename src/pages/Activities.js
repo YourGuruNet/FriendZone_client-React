@@ -36,7 +36,7 @@ export const getActivity = (activity) => {
 };
 
 // Reducer setup
-export const ActivitiesReducer = (state = defaultState, action, id) => {
+export const ActivitiesReducer = (state = defaultState, action) => {
   switch (action.type) {
     case SET_LOADING:
       return { ...state, loading: true };
