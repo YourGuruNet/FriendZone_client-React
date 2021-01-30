@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getActivity } from '../../pages/Activities';
-const ActivityList = ({ activities, getActivity }) => {
+
+const ActivityList = (props) => {
   return (
     <ActivitySection>
-      {activities.map((activity) => {
+      {props.activities.map((activity) => {
         //console.log(activity.id);
         return (
           <div className='activity_item' key={activity.id}>
@@ -20,7 +21,7 @@ const ActivityList = ({ activities, getActivity }) => {
               <p className='hashtag'>#{activity.category}</p>
               <button
                 className='details_button'
-                onClick={() => getActivity(activity)}
+                onClick={() => props.getActivity(activity)}
               >
                 Details
               </button>
@@ -32,18 +33,17 @@ const ActivityList = ({ activities, getActivity }) => {
   );
 };
 
-const mapStateToProps = ({
-  activitiesState: { activities, loading, selectedActivity },
-}) => {
-  return { loading, activities, selectedActivity };
+const mapStateToProps = ({ activitiesState: { activities } }) => {
+  return { activities };
 };
 
 // Functions
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getActivity,
+    getActivity: (a) => dispatch(getActivity(a)),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityList);
 
 const ActivitySection = styled.section`
