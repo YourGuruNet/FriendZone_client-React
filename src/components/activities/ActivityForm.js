@@ -18,6 +18,12 @@ const ActivityForm = (props) => {
   };
   const [activity, setActivity] = useState(initializeForm);
 
+  // Input changes
+  const handleInputChange = (event) => {
+    console.log(event.target.value);
+    setActivity({ ...activity, [event.target.name]: event.target.value });
+  };
+
   return (
     <Section>
       <div className='form-style-10'>
@@ -32,7 +38,12 @@ const ActivityForm = (props) => {
           <div className='inner-wrap'>
             <label>
               Title
-              <input type='text' name='title' value={activity.title} />
+              <input
+                onChange={handleInputChange}
+                type='text'
+                name='title'
+                value={activity.title}
+              />
             </label>
             <label>
               Description
