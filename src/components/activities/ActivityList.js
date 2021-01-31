@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getActivity } from '../../pages/Activities';
+import { getActivity } from './reducer/ActivitiesActions';
 
 const ActivityList = (props) => {
   return (
