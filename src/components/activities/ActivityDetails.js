@@ -1,27 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
-import image from '../../assets/testimage1.jpg';
-const ActivityDetails = () => {
+
+import { connect } from 'react-redux';
+const ActivityDetails = (props) => {
+  console.log(props.selectedActivity);
   return (
     <Section>
-      <img src={image} alt='activity' className='details_image' />
-      <h1 className='details_title'>Trim around Paris</h1>
-      <p className='details_text'>
-        2021 marks our 18th consecutive year partnering with the race organizers
-        to deliver great race experiences and unparalleled access. Although La
-        Vuelta a España 2020 will be an outstanding sporting event, we have had
-        to cancel our Vuelta trips for this year due to uncertainty related to.
-      </p>
-      <div className='button_container'>
-        <p className='details_date '>21.12.2020</p>
-        <button className='details_button'>Edit</button>
-        <button className='details_button'>Cancel</button>
+      <img
+        src={`assets/categoryImages/${props.selectedActivity.category}.jpg`}
+        alt='activity'
+        className='details_image'
+      />
+      <h1 className='details_title'>{props.selectedActivity.title}</h1>
+      <p className='details_text'>{props.selectedActivity.description}</p>
+      <div className='bottom_container'>
+        <div className='location'>
+          <p className='location-item'>{props.selectedActivity.city},</p>
+          <p className='location-item'>{props.selectedActivity.venue}</p>
+        </div>
+        <div className='button_container'>
+          <p className='details_date '>{props.selectedActivity.date}</p>
+          <button className='details_button'>Edit</button>
+          <button className='details_button'>Cancel</button>
+        </div>
       </div>
     </Section>
   );
 };
 
-export default ActivityDetails;
+const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
+  return { selectedActivity };
+};
+
+export default connect(mapStateToProps)(ActivityDetails);
 
 const Section = styled.section`
   background-color: var(--baseColor-Light);
@@ -47,12 +58,13 @@ const Section = styled.section`
     background-color: var(--baseColor-Light-2);
     color: var(--baseColor-Light);
   }
-
-  .button_container {
+  .bottom_container {
     position: absolute;
     bottom: 0;
     right: 0;
     padding: 1rem;
+  }
+  .button_container {
     display: flex;
     justify-content: flex-end;
   }
@@ -91,5 +103,20 @@ const Section = styled.section`
     :hover {
       border: solid 0.1rem var(--baseColor-Dark-2);
     }
+  }
+
+  .location {
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0.8;
+    padding-bottom: 1rem;
+  }
+
+  .location-item {
+    letter-spacing: 0.1rem;
+  }
+
+  .location-item:last-child {
+    padding-left: 0.5rem;
   }
 `;
