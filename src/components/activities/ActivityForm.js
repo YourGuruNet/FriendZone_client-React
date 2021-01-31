@@ -62,8 +62,8 @@ const ActivityForm = (props) => {
     </Section>
   );
 };
-const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
-  return { selectedActivity };
+const mapStateToProps = () => {
+  return;
 };
 
 // Functions

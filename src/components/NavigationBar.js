@@ -44,8 +44,8 @@ const NavigationBar = (props) => {
   );
 };
 
-const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
-  return { selectedActivity };
+const mapStateToProps = () => {
+  return;
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -107,6 +107,7 @@ const Header = styled.header`
     color: var(--baseColor);
     background-color: transparent;
     outline: none;
+
     :hover {
       color: var(--baseColor-Dark-2);
     }

@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import styled from 'styled-components';
 import ActivityList from '../components/activities/ActivityList';
-import {
-  getActivities,
-  getActivity,
-  newActivity,
-  setEditMode,
-} from '../components/activities/reducer/ActivitiesActions';
+import { getActivities } from '../components/activities/reducer/ActivitiesActions';
 import ActivityDashboard from '../components/activities/ActivityDashboard';
 
 const Activities = ({ getActivities, loading }) => {
@@ -35,10 +30,7 @@ const mapStateToProps = ({ activitiesState: { activities, loading } }) => {
 // Functions
 const mapDispatchToProps = (dispatch) => {
   return {
-    getActivity: () => dispatch(getActivity()),
     getActivities: () => dispatch(getActivities()),
-    setEditMode: () => dispatch(setEditMode()),
-    newActivity: () => dispatch(newActivity()),
   };
 };
 
