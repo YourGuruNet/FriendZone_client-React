@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 const ActivityDetails = (props) => {
-  console.log(props.selectedActivity);
   return (
     <Section>
       <img
