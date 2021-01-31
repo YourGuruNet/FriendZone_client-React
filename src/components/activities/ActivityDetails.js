@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 const ActivityDetails = (props) => {
-  return (
+  return props.selectedActivity === null ? (
+    <div />
+  ) : (
     <Section>
       <img
         src={`assets/categoryImages/${props.selectedActivity.category}.jpg`}
