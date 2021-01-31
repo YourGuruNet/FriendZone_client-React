@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import Logo1 from '../assets/logo1.png';
 import { GiMoon } from 'react-icons/gi';
 import { BsSun } from 'react-icons/bs';
+import { newActivity } from './activities/reducer/ActivitiesActions';
+import { connect } from 'react-redux';
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
   //Dark mode
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
@@ -23,15 +25,18 @@ const NavigationBar = () => {
           <ul className='navigation_list'>
             <li className='navigation_list-item'>Home</li>
             <li className='navigation_list-item'>Activities</li>
-            <li className='navigation_list-item new_activity'>new activity</li>
-            <li className='navigation_list-item'>
-              <button
-                className='dark_mode-button'
-                onClick={() => setDarkMode(!darkMode)}
-              >
-                {darkMode ? <BsSun /> : <GiMoon />}
-              </button>
-            </li>
+            <button
+              className='navigation_list-item new_activity'
+              onClick={() => props.newActivity()}
+            >
+              new activity
+            </button>
+            <button
+              className='navigation_list-item dark_mode-button'
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? <BsSun /> : <GiMoon />}
+            </button>
           </ul>
         </div>
       </div>
@@ -39,7 +44,16 @@ const NavigationBar = () => {
   );
 };
 
-export default NavigationBar;
+const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
+  return { selectedActivity };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    newActivity: () => dispatch(newActivity()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
 
 const Header = styled.header`
   position: fixed;
@@ -66,13 +80,15 @@ const Header = styled.header`
     display: flex;
   }
   .navigation_list-item {
+    background-color: transparent;
     padding: 1rem;
     font-size: 2rem;
     list-style: none;
     color: var(--baseColor);
     text-transform: uppercase;
-    border: solid 0.1rem transparent;
+    outline: none;
     cursor: pointer;
+    border: solid 0.1rem transparent;
     :hover {
       border: solid 0.1rem var(--baseColor);
     }
@@ -82,13 +98,15 @@ const Header = styled.header`
   }
   .new_activity {
     border: solid 0.1rem var(--baseColor);
+    :hover {
+      background-color: var(--baseColor-Light-2);
+    }
   }
   .dark_mode-button {
     font-size: 2.2rem;
     color: var(--baseColor);
     background-color: transparent;
     outline: none;
-    border: none;
     :hover {
       color: var(--baseColor-Dark-2);
     }

@@ -6,6 +6,7 @@ import ActivityList from '../components/activities/ActivityList';
 import {
   getActivities,
   getActivity,
+  newActivity,
   setEditMode,
 } from '../components/activities/reducer/ActivitiesActions';
 import ActivityDashboard from '../components/activities/ActivityDashboard';
@@ -37,6 +38,7 @@ const mapDispatchToProps = (dispatch) => {
     getActivity: () => dispatch(getActivity()),
     getActivities: () => dispatch(getActivities()),
     setEditMode: () => dispatch(setEditMode()),
+    newActivity: () => dispatch(newActivity()),
   };
 };
 

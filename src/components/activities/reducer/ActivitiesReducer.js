@@ -22,6 +22,8 @@ export const ActivitiesReducer = (state = defaultState, action) => {
       };
     case activitiesConst.SET_EDIT_MODE:
       return { ...state, editMode: action.payload };
+    case activitiesConst.NEW_ACTIVITY:
+      return { ...state, editMode: true, selectedActivity: null };
     default:
       return state;
   }

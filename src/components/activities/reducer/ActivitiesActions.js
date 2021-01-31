@@ -6,6 +6,7 @@ export const activitiesConst = {
   SET_EDIT_MODE: 'SET_EDIT_MODE',
   GET_ACTIVITIES: 'GET_ACTIVITIES',
   GET_ACTIVITY: 'GET_ACTIVITY',
+  NEW_ACTIVITY: 'NEW_ACTIVITY',
 };
 
 export const setLoading = () => {
@@ -14,6 +15,10 @@ export const setLoading = () => {
 
 export const setEditMode = (boole) => {
   return { type: activitiesConst.SET_EDIT_MODE, payload: boole };
+};
+
+export const newActivity = () => {
+  return { type: activitiesConst.NEW_ACTIVITY };
 };
 
 export const getActivities = () => {
