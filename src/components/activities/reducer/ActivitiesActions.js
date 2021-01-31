@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { url } from '../../../url/Url';
 
 export const activitiesConst = {
   SET_LOADING: 'SET_LOADING',
@@ -13,7 +14,7 @@ export const setLoading = () => {
 export const getActivities = () => {
   return async function (dispatch) {
     dispatch(setLoading());
-    await axios.get('http://localhost:5000/api/activities').then((response) => {
+    await axios.get(`${url}/api/activities`).then((response) => {
       dispatch({
         type: activitiesConst.GET_ACTIVITIES,
         payload: response.data,
