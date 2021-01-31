@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { connect } from 'react-redux';
+import { getActivity, setEditMode } from './reducer/ActivitiesActions';
+
 const ActivityDetails = (props) => {
   return props.selectedActivity === null ? (
     <div />
@@ -21,8 +22,18 @@ const ActivityDetails = (props) => {
         </div>
         <div className='button_container'>
           <p className='details_date '>{props.selectedActivity.date}</p>
-          <button className='details_button'>Edit</button>
-          <button className='details_button'>Cancel</button>
+          <button
+            className='details_button'
+            onClick={() => props.setEditMode(true)}
+          >
+            Edit
+          </button>
+          <button
+            className='details_button'
+            onClick={() => props.getActivity(null)}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </Section>
@@ -33,7 +44,15 @@ const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
   return { selectedActivity };
 };
 
-export default connect(mapStateToProps)(ActivityDetails);
+// Functions
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setEditMode: (boole) => dispatch(setEditMode(boole)),
+    getActivity: (activity) => dispatch(getActivity(activity)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityDetails);
 
 const Section = styled.section`
   background-color: var(--baseColor-Light);

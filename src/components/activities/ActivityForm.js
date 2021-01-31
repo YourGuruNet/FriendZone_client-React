@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { setEditMode } from './reducer/ActivitiesActions';
 
-const ActivityForm = () => {
+const ActivityForm = (props) => {
   return (
     <Section>
       <div className='form-style-10'>
@@ -47,12 +49,31 @@ const ActivityForm = () => {
             </label>
           </div>
         </form>
+        <div className='button_container'>
+          <button className='details_button'>Add</button>
+          <button
+            className='details_button'
+            onClick={() => props.setEditMode(false)}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </Section>
   );
 };
+const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
+  return { selectedActivity };
+};
 
-export default ActivityForm;
+// Functions
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setEditMode: (boole) => dispatch(setEditMode(boole)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityForm);
 
 const Section = styled.section`
   width: 100%;
@@ -125,5 +146,30 @@ const Section = styled.section`
     margin-left: -4.5rem;
     color: var(--baseColor-Light);
     margin-top: -0.3rem;
+  }
+
+  .button_container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .details_button {
+    padding: 0.2rem 0.5rem;
+    margin-left: 1rem;
+    background-color: var(--baseColor-Dark-2);
+    border: solid 0.1rem var(--baseColor-Dark-2);
+    text-transform: uppercase;
+    color: var(--baseColor);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    cursor: pointer;
+    outline: none;
+    :hover {
+      background-color: var(--baseColor);
+      color: var(--baseColor-Dark-2);
+    }
+    :active {
+      transform: scale(0.9);
+    }
   }
 `;

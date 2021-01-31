@@ -4,7 +4,8 @@ import { activitiesConst } from './ActivitiesActions';
 const defaultState = {
   loading: true,
   activities: [],
-  selectedActivity: {},
+  selectedActivity: null,
+  editMode: false,
 };
 // Reducer setup
 export const ActivitiesReducer = (state = defaultState, action) => {
@@ -19,6 +20,8 @@ export const ActivitiesReducer = (state = defaultState, action) => {
         loading: false,
         selectedActivity: action.payload,
       };
+    case activitiesConst.SET_EDIT_MODE:
+      return { ...state, editMode: action.payload };
     default:
       return state;
   }

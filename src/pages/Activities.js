@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import styled from 'styled-components';
-import ActivityDetails from '../components/activities/ActivityDetails';
 import ActivityList from '../components/activities/ActivityList';
-import ActivityForm from '../components/activities/ActivityForm';
 import {
   getActivities,
   getActivity,
+  setEditMode,
 } from '../components/activities/reducer/ActivitiesActions';
+import ActivityDashboard from '../components/activities/ActivityDashboard';
 
 const Activities = ({ getActivities, loading }) => {
   useEffect(() => {
@@ -21,10 +21,7 @@ const Activities = ({ getActivities, loading }) => {
     return (
       <ActivitiesSection>
         <ActivityList />
-        <div>
-          <ActivityDetails />
-          <ActivityForm />
-        </div>
+        <ActivityDashboard />
       </ActivitiesSection>
     );
   }
@@ -39,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getActivity: () => dispatch(getActivity()),
     getActivities: () => dispatch(getActivities()),
+    setEditMode: () => dispatch(setEditMode()),
   };
 };
 
