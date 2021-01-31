@@ -40,7 +40,7 @@ const mapStateToProps = ({ activitiesState: { activities } }) => {
 // Functions
 const mapDispatchToProps = (dispatch) => {
   return {
-    getActivity: (a) => dispatch(getActivity(a)),
+    getActivity: (activity) => dispatch(getActivity(activity)),
   };
 };
 

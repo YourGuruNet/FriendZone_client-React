@@ -22,10 +22,9 @@ export const getActivities = () => {
   };
 };
 
-export const getActivity = (a) => {
-  console.log(a);
+export const getActivity = (activity) => {
   return function (dispatch) {
     dispatch(setLoading());
-    return dispatch({ type: activitiesConst.GET_ACTIVITY, payload: a });
+    dispatch({ type: activitiesConst.GET_ACTIVITY, payload: activity });
   };
 };
