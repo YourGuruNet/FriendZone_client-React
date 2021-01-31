@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setEditMode } from './reducer/ActivitiesActions';
 
 const ActivityForm = (props) => {
+  const initializeForm = () => {
+    return props.selectedActivity
+      ? props.selectedActivity
+      : {
+          title: '',
+          category: '',
+          description: '',
+          date: '',
+          city: '',
+          venue: '',
+        };
+  };
+  const [activity, setActivity] = useState(initializeForm);
+
   return (
     <Section>
       <div className='form-style-10'>
@@ -18,10 +32,14 @@ const ActivityForm = (props) => {
           <div className='inner-wrap'>
             <label>
               Title
-              <input type='text' name='title1' />
+              <input type='text' name='title' value={activity.title} />
             </label>
             <label>
-              Description <textarea name='description'></textarea>
+              Description
+              <textarea
+                name='description'
+                value={activity.description}
+              ></textarea>
             </label>
           </div>
 
@@ -30,10 +48,12 @@ const ActivityForm = (props) => {
           </div>
           <div className='inner-wrap'>
             <label>
-              City <input type='text' name='city' />
+              City
+              <input type='text' name='city' value={activity.city} />
             </label>
             <label>
-              Venue <input type='text' name='venue' />
+              Venue
+              <input type='text' name='venue' value={activity.venue} />
             </label>
           </div>
 
@@ -42,28 +62,30 @@ const ActivityForm = (props) => {
           </div>
           <div className='inner-wrap'>
             <label>
-              Date <input type='date' name='date' />
+              Date
+              <input type='date' name='date' value={activity.date} />
             </label>
             <label>
-              Category <input type='text' name='category' />
+              Category
+              <input type='text' name='category' value={activity.category} />
             </label>
           </div>
+          <div className='button_container'>
+            <button className='details_button'>Add</button>
+            <button
+              className='details_button'
+              onClick={() => props.setEditMode(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
-        <div className='button_container'>
-          <button className='details_button'>Add</button>
-          <button
-            className='details_button'
-            onClick={() => props.setEditMode(false)}
-          >
-            Cancel
-          </button>
-        </div>
       </div>
     </Section>
   );
 };
-const mapStateToProps = () => {
-  return;
+const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
+  return { selectedActivity };
 };
 
 // Functions
