@@ -97,6 +97,7 @@ const Header = styled.header`
     }
   }
   .new_activity {
+    font-family: inherit;
     border: solid 0.1rem var(--baseColor);
     :hover {
       background-color: var(--baseColor-Light-2);
