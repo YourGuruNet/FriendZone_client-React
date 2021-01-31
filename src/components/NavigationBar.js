@@ -44,8 +44,8 @@ const NavigationBar = (props) => {
   );
 };
 
-const mapStateToProps = () => {
-  return;
+const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
+  return { selectedActivity };
 };
 
 const mapDispatchToProps = (dispatch) => {

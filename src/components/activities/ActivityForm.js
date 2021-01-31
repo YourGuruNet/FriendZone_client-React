@@ -20,8 +20,15 @@ const ActivityForm = (props) => {
 
   // Input changes
   const handleInputChange = (event) => {
-    console.log(event.target.value);
-    setActivity({ ...activity, [event.target.name]: event.target.value });
+    const { name, value } = event.currentTarget;
+    setActivity({ ...activity, [name]: value });
+  };
+
+  //Submit
+  const handleSubmit = (event) => {
+    //Stop Page reloading
+    event.preventDefault();
+    console.log(activity);
   };
 
   return (
@@ -31,7 +38,7 @@ const ActivityForm = (props) => {
           Create new activity
           <span>Fill the form and tell us about your activity!</span>
         </h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className='section'>
             <span>1</span>About activity:
           </div>
@@ -40,14 +47,17 @@ const ActivityForm = (props) => {
               Title
               <input
                 onChange={handleInputChange}
-                type='text'
                 name='title'
+                component='input'
+                type='text'
                 value={activity.title}
               />
             </label>
             <label>
               Description
               <textarea
+                onChange={handleInputChange}
+                component='input'
                 name='description'
                 value={activity.description}
               ></textarea>
@@ -60,11 +70,21 @@ const ActivityForm = (props) => {
           <div className='inner-wrap'>
             <label>
               City
-              <input type='text' name='city' value={activity.city} />
+              <input
+                type='text'
+                onChange={handleInputChange}
+                name='city'
+                value={activity.city}
+              />
             </label>
             <label>
               Venue
-              <input type='text' name='venue' value={activity.venue} />
+              <input
+                type='text'
+                onChange={handleInputChange}
+                name='venue'
+                value={activity.venue}
+              />
             </label>
           </div>
 
@@ -74,18 +94,31 @@ const ActivityForm = (props) => {
           <div className='inner-wrap'>
             <label>
               Date
-              <input type='date' name='date' value={activity.date} />
+              <input
+                type='datetime-local'
+                onChange={handleInputChange}
+                name='date'
+                value={activity.date}
+              />
             </label>
             <label>
               Category
-              <input type='text' name='category' value={activity.category} />
+              <input
+                type='text'
+                onChange={handleInputChange}
+                name='category'
+                value={activity.category}
+              />
             </label>
           </div>
           <div className='button_container'>
-            <button className='details_button'>Add</button>
+            <button className='details_button' type='submit' content='Submit'>
+              Add
+            </button>
             <button
               className='details_button'
               onClick={() => props.setEditMode(false)}
+              content='Cancel'
             >
               Cancel
             </button>
@@ -142,7 +175,7 @@ const Section = styled.section`
     margin-bottom: 1.5rem;
   }
   .form-style-10 input[type='text'],
-  .form-style-10 input[type='date'],
+  .form-style-10 input[type='datetime-local'],
   .form-style-10 textarea,
   .form-style-10 select {
     display: block;
