@@ -105,7 +105,7 @@ const ActivityForm = (props) => {
             <span>3</span>When and what?
           </div>
           <div className='inner-wrap'>
-            {/*   <label>
+            <label>
               Date
               <input
                 type='datetime-local'
@@ -113,7 +113,7 @@ const ActivityForm = (props) => {
                 name='date'
                 value={activity.date}
               />
-  </label>*/}
+            </label>
             <label>
               Category
               <input

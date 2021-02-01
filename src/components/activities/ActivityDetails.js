@@ -21,7 +21,10 @@ const ActivityDetails = (props) => {
           <p className='location-item'>{props.selectedActivity.venue}</p>
         </div>
         <div className='button_container'>
-          <p className='details_date '>{props.selectedActivity.date}</p>
+          <p className='details_date'>
+            <span>{props.selectedActivity.date.slice(0, 10)}</span>{' '}
+            {props.selectedActivity.date.slice(11, 20)}
+          </p>
           <button
             className='details_button'
             onClick={() => props.setEditMode(true)}
@@ -115,13 +118,17 @@ const Section = styled.section`
 
   .details_date {
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 0.2rem;
     padding: 0.2rem 0.5rem;
     border: solid 0.1rem transparent;
     transition: all 0.3s;
     :hover {
       border: solid 0.1rem var(--baseColor-Dark-2);
+    }
+
+    span {
+      font-weight: 700;
     }
   }
 

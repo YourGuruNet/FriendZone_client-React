@@ -11,7 +11,10 @@ const ActivityList = (props) => {
         return (
           <div className='activity_item' key={activity.id}>
             <h1 className='title'>{activity.title}</h1>
-            <p className='date'>{activity.date}</p>
+            <p className='date'>
+              <span>{activity.date.slice(0, 10)}</span>{' '}
+              {activity.date.slice(11, 20)}
+            </p>
             <p>{activity.description}</p>
             <div className='location'>
               <p className='location-item'>{activity.city},</p>
@@ -75,6 +78,9 @@ const ActivitySection = styled.section`
   .date {
     letter-spacing: 0.1rem;
     opacity: 0.8;
+    span {
+      font-weight: 700;
+    }
   }
 
   .hashtag {

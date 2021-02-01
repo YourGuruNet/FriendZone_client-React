@@ -27,9 +27,15 @@ export const getActivities = () => {
   return async function (dispatch) {
     dispatch(setLoading());
     await axios.get(`${url}/api/activities`).then((response) => {
+      let activities = [];
+      response.data.forEach((activity) => {
+        activity.date = activity.date.split('.')[0];
+        activities.push(activity);
+      });
+
       dispatch({
         type: activitiesConst.GET_ACTIVITIES,
-        payload: response.data,
+        payload: activities,
       });
     });
   };
