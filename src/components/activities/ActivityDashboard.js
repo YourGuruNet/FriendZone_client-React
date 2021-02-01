@@ -7,13 +7,19 @@ const ActivityDashboard = (props) => {
   return (
     <div>
       {!props.editMode && <ActivityDetails />}
-      {props.editMode && <ActivityForm />}
+      {props.editMode && (
+        <ActivityForm
+          key={(props.selectedActivity && props.selectedActivity.id) || 0}
+        />
+      )}
     </div>
   );
 };
 
-const mapStateToProps = ({ activitiesState: { editMode } }) => {
-  return { editMode };
+const mapStateToProps = ({
+  activitiesState: { editMode, selectedActivity },
+}) => {
+  return { editMode, selectedActivity };
 };
 
 export default connect(mapStateToProps)(ActivityDashboard);
