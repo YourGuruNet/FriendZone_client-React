@@ -7,6 +7,8 @@ export const activitiesConst = {
   GET_ACTIVITIES: 'GET_ACTIVITIES',
   GET_ACTIVITY: 'GET_ACTIVITY',
   NEW_ACTIVITY: 'NEW_ACTIVITY',
+  HANDLE_EDIT_ACTIVITY: 'HANDLE_EDIT_ACTIVITY',
+  HANDLE_CREATE_ACTIVITY: 'HANDLE_CREATE_ACTIVITY',
 };
 
 export const setLoading = () => {
@@ -38,5 +40,29 @@ export const getActivity = (activity) => {
     dispatch(setEditMode(false));
     dispatch(setLoading());
     dispatch({ type: activitiesConst.GET_ACTIVITY, payload: activity });
+  };
+};
+
+// Form
+
+export const handleCreateActivity = (activity) => {
+  console.log('handleCreateActivity' + activity);
+  return async function (dispatch) {
+    dispatch(setLoading());
+    dispatch({
+      type: activitiesConst.HANDLE_CREATE_ACTIVITY,
+      payload: activity,
+    });
+  };
+};
+
+export const handleEditActivity = (activity) => {
+  console.log(activity);
+  return async function (dispatch) {
+    dispatch(setLoading());
+    dispatch({
+      type: activitiesConst.HANDLE_EDIT_ACTIVITY,
+      payload: activity,
+    });
   };
 };

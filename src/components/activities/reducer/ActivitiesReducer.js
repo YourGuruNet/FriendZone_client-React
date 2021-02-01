@@ -24,6 +24,21 @@ export const ActivitiesReducer = (state = defaultState, action) => {
       return { ...state, editMode: action.payload };
     case activitiesConst.NEW_ACTIVITY:
       return { ...state, editMode: true, selectedActivity: null };
+    case activitiesConst.HANDLE_CREATE_ACTIVITY:
+      return {
+        ...state,
+        loading: false,
+        activities: [...state.activities, action.payload],
+      };
+    case activitiesConst.HANDLE_EDIT_ACTIVITY:
+      return {
+        ...state,
+        loading: false,
+        activities: [
+          ...state.activities.filter((item) => item.id !== action.payload.id),
+          action.payload,
+        ],
+      };
     default:
       return state;
   }

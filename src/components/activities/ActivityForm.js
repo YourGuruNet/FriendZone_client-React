@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { setEditMode } from './reducer/ActivitiesActions';
+import {
+  handleCreateActivity,
+  handleEditActivity,
+  setEditMode,
+} from './reducer/ActivitiesActions';
+import uuid from 'react-uuid';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
     return props.selectedActivity
       ? props.selectedActivity
       : {
+          id: '',
           title: '',
           category: '',
           description: '',
@@ -26,9 +32,18 @@ const ActivityForm = (props) => {
 
   //Submit
   const handleSubmit = (event) => {
+    console.log(activity);
     //Stop Page reloading
     event.preventDefault();
-    console.log(activity);
+    if (activity.id === '') {
+      let newActivity = {
+        ...activity,
+        id: uuid(),
+      };
+      props.handleCreateActivity(newActivity);
+    } else {
+      props.handleEditActivity(activity);
+    }
   };
 
   return (
@@ -48,7 +63,6 @@ const ActivityForm = (props) => {
               <input
                 onChange={handleInputChange}
                 name='title'
-                component='input'
                 type='text'
                 value={activity.title}
               />
@@ -57,7 +71,6 @@ const ActivityForm = (props) => {
               Description
               <textarea
                 onChange={handleInputChange}
-                component='input'
                 name='description'
                 value={activity.description}
               ></textarea>
@@ -92,7 +105,7 @@ const ActivityForm = (props) => {
             <span>3</span>When and what?
           </div>
           <div className='inner-wrap'>
-            <label>
+            {/*   <label>
               Date
               <input
                 type='datetime-local'
@@ -100,7 +113,7 @@ const ActivityForm = (props) => {
                 name='date'
                 value={activity.date}
               />
-            </label>
+  </label>*/}
             <label>
               Category
               <input
@@ -118,7 +131,6 @@ const ActivityForm = (props) => {
             <button
               className='details_button'
               onClick={() => props.setEditMode(false)}
-              content='Cancel'
             >
               Cancel
             </button>
@@ -136,6 +148,9 @@ const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setEditMode: (boole) => dispatch(setEditMode(boole)),
+    handleCreateActivity: (activity) =>
+      dispatch(handleCreateActivity(activity)),
+    handleEditActivity: (activity) => dispatch(handleEditActivity(activity)),
   };
 };
 
