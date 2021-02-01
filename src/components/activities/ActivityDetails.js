@@ -36,7 +36,7 @@ const ActivityDetails = (props) => {
             Edit
           </button>
           <button
-            className='details_button'
+            className='details_button light_detail_button'
             onClick={() =>
               props.handleDeleteActivity(props.selectedActivity.id)
             }
@@ -44,7 +44,7 @@ const ActivityDetails = (props) => {
             Delete
           </button>
           <button
-            className='details_button'
+            className='details_button light_detail_button'
             onClick={() => props.getActivity(null)}
           >
             Cancel
@@ -122,6 +122,16 @@ const Section = styled.section`
     }
     :active {
       transform: scale(0.9);
+    }
+  }
+
+  .light_detail_button {
+    background-color: var(--baseColor);
+    color: var(--baseColor-Dark-2);
+
+    :hover {
+      background-color: var(--baseColor-Dark-2);
+      color: var(--baseColor);
     }
   }
   .details_text {
