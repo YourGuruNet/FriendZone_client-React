@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { url } from '../../../url/Url';
+import { url } from '../../../app/url/Url';
 
 export const activitiesConst = {
   SET_LOADING: 'SET_LOADING',
