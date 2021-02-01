@@ -9,6 +9,7 @@ export const activitiesConst = {
   NEW_ACTIVITY: 'NEW_ACTIVITY',
   HANDLE_EDIT_ACTIVITY: 'HANDLE_EDIT_ACTIVITY',
   HANDLE_CREATE_ACTIVITY: 'HANDLE_CREATE_ACTIVITY',
+  DELETE_ACTIVITY: 'DELETE_ACTIVITY',
 };
 
 export const setLoading = () => {
@@ -46,6 +47,13 @@ export const getActivity = (activity) => {
     dispatch(setEditMode(false));
     dispatch(setLoading());
     dispatch({ type: activitiesConst.GET_ACTIVITY, payload: activity });
+  };
+};
+
+export const handleDeleteActivity = (id) => {
+  return function (dispatch) {
+    dispatch(setLoading());
+    dispatch({ type: activitiesConst.DELETE_ACTIVITY, payload: id });
   };
 };
 

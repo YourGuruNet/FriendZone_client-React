@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getActivity, setEditMode } from './reducer/ActivitiesActions';
+import {
+  getActivity,
+  handleDeleteActivity,
+  setEditMode,
+} from './reducer/ActivitiesActions';
 
 const ActivityDetails = (props) => {
   return props.selectedActivity === null ? (
@@ -33,6 +37,14 @@ const ActivityDetails = (props) => {
           </button>
           <button
             className='details_button'
+            onClick={() =>
+              props.handleDeleteActivity(props.selectedActivity.id)
+            }
+          >
+            Delete
+          </button>
+          <button
+            className='details_button'
             onClick={() => props.getActivity(null)}
           >
             Cancel
@@ -52,6 +64,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setEditMode: (boole) => dispatch(setEditMode(boole)),
     getActivity: (activity) => dispatch(getActivity(activity)),
+    handleDeleteActivity: (id) => dispatch(handleDeleteActivity(id)),
   };
 };
 

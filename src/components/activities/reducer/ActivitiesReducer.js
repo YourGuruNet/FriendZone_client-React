@@ -39,6 +39,15 @@ export const ActivitiesReducer = (state = defaultState, action) => {
           action.payload,
         ],
       };
+    case activitiesConst.DELETE_ACTIVITY:
+      return {
+        ...state,
+        loading: false,
+        activities: [
+          ...state.activities.filter((item) => item.id !== action.payload),
+        ],
+        selectedActivity: null,
+      };
     default:
       return state;
   }
