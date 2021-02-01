@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { url } from '../../../app/url/Url';
+import { ActivitiesApiCall } from '../../../app/api/api';
+//import { url } from '../../../app/url/Url';
 
 export const activitiesConst = {
   SET_LOADING: 'SET_LOADING',
@@ -27,9 +28,9 @@ export const newActivity = () => {
 export const getActivities = () => {
   return async function (dispatch) {
     dispatch(setLoading());
-    await axios.get(`${url}/api/activities`).then((response) => {
+    await ActivitiesApiCall.list().then((response) => {
       let activities = [];
-      response.data.forEach((activity) => {
+      response.forEach((activity) => {
         activity.date = activity.date.split('.')[0];
         activities.push(activity);
       });
