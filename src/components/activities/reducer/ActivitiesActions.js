@@ -46,7 +46,6 @@ export const getActivity = (activity) => {
 // Form
 
 export const handleCreateActivity = (activity) => {
-  console.log('handleCreateActivity' + activity);
   return async function (dispatch) {
     dispatch(setLoading());
     dispatch({
@@ -57,7 +56,6 @@ export const handleCreateActivity = (activity) => {
 };
 
 export const handleEditActivity = (activity) => {
-  console.log(activity);
   return async function (dispatch) {
     dispatch(setLoading());
     dispatch({
