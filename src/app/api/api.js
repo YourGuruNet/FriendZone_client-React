@@ -1,10 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
-const responseBody = (AxiosResponse) => AxiosResponse.data;
+const responseBody = (response) => response.data;
 
-const request = {
+const requests = {
   get: (url) => axios.get(url).then(responseBody),
   post: (url, body) => axios.post(url, body).then(responseBody),
   put: (url, body) => axios.put(url, body).then(responseBody),
@@ -12,9 +12,9 @@ const request = {
 };
 
 export const ActivitiesApiCall = {
-  list: () => request.get('/activities'),
-  details: (id) => request.get(`/activities/${id}`),
-  create: (activity) => request.post('/activities', activity),
-  update: (activity) => request.put(`/activities/${activity.id}`, activity),
-  delete: (id) => request.del(`/activities/${id}`),
+  list: () => requests.get('/activities'),
+  details: (id) => requests.get(`/activities/${id}`),
+  create: (activity) => requests.post('/activities', activity),
+  update: (activity) => requests.put(`/activities/${activity.id}`, activity),
+  delete: (id) => requests.del(`/activities/${id}`),
 };

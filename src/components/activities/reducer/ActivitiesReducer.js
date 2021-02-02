@@ -29,7 +29,9 @@ export const ActivitiesReducer = (state = defaultState, action) => {
         ...state,
         loading: false,
         activities: [...state.activities, action.payload],
+        editMode: false,
       };
+
     case activitiesConst.HANDLE_EDIT_ACTIVITY:
       return {
         ...state,
@@ -38,6 +40,7 @@ export const ActivitiesReducer = (state = defaultState, action) => {
           ...state.activities.filter((item) => item.id !== action.payload.id),
           action.payload,
         ],
+        editMode: false,
       };
     case activitiesConst.DELETE_ACTIVITY:
       return {

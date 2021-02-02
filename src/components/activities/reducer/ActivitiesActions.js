@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { ActivitiesApiCall } from '../../../app/api/api';
 //import { url } from '../../../app/url/Url';
 
@@ -34,10 +33,22 @@ export const getActivities = () => {
         activity.date = activity.date.split('.')[0];
         activities.push(activity);
       });
-
       dispatch({
         type: activitiesConst.GET_ACTIVITIES,
         payload: activities,
+      });
+    });
+  };
+};
+
+export const handleCreateActivity = (activity) => {
+  console.log(activity);
+  return async function (dispatch) {
+    await ActivitiesApiCall.create(activity).then(() => {
+      dispatch(setLoading());
+      dispatch({
+        type: activitiesConst.HANDLE_CREATE_ACTIVITY,
+        payload: activity,
       });
     });
   };
@@ -59,16 +70,6 @@ export const handleDeleteActivity = (id) => {
 };
 
 // Form
-
-export const handleCreateActivity = (activity) => {
-  return async function (dispatch) {
-    dispatch(setLoading());
-    dispatch({
-      type: activitiesConst.HANDLE_CREATE_ACTIVITY,
-      payload: activity,
-    });
-  };
-};
 
 export const handleEditActivity = (activity) => {
   return async function (dispatch) {

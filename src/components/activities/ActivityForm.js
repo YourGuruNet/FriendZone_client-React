@@ -32,7 +32,6 @@ const ActivityForm = (props) => {
 
   //Submit
   const handleSubmit = (event) => {
-    console.log(activity);
     //Stop Page reloading
     event.preventDefault();
     if (activity.id === '') {
