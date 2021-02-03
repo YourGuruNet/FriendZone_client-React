@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import App from './app/layout/App';
 import { ActivitiesReducer } from './components/activities/reducer/ActivitiesReducer';
+import { BrowserRouter } from 'react-router-dom';
 
 // Store setup
 const middleware = [thunk];
@@ -20,7 +21,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

@@ -5,6 +5,7 @@ import { GiMoon } from 'react-icons/gi';
 import { BsSun } from 'react-icons/bs';
 import { newActivity } from './activities/reducer/ActivitiesActions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const NavigationBar = (props) => {
   //Dark mode
@@ -21,16 +22,23 @@ const NavigationBar = (props) => {
     <Header>
       <div className={darkMode ? 'light_mode dark_mode' : ' light_mode'}>
         <div className='navigation_container'>
-          <img src={Logo1} alt='friend zone' />
+          <Link to='/' className='logo_image'>
+            <img src={Logo1} alt='friend zone' />
+          </Link>
           <ul className='navigation_list'>
-            <li className='navigation_list-item'>Home</li>
-            <li className='navigation_list-item'>Activities</li>
-            <button
+            <Link to='/' className='navigation_list-item'>
+              Home
+            </Link>
+            <Link to='/activities' className='navigation_list-item'>
+              Activities
+            </Link>
+            <Link
+              to='/activities'
               className='navigation_list-item new_activity'
               onClick={() => props.newActivity()}
             >
               new activity
-            </button>
+            </Link>
             <button
               className='navigation_list-item dark_mode-button'
               onClick={() => setDarkMode(!darkMode)}
@@ -76,10 +84,15 @@ const Header = styled.header`
     justify-content: space-between;
     align-items: center;
   }
+  .logo_image :active {
+    transform: scale(0.9);
+  }
+
   .navigation_list {
     display: flex;
   }
   .navigation_list-item {
+    text-decoration: none;
     background-color: transparent;
     padding: 1rem;
     font-size: 2rem;

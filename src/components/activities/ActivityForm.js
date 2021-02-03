@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -46,97 +46,100 @@ const ActivityForm = (props) => {
   };
 
   return (
-    <Section>
-      <div className='form-style-10'>
-        <h1>
-          Create new activity
-          <span>Fill the form and tell us about your activity!</span>
-        </h1>
-        <form onSubmit={handleSubmit}>
-          <div className='section'>
-            <span>1</span>About activity:
-          </div>
-          <div className='inner-wrap'>
-            <label>
-              Title
-              <input
-                onChange={handleInputChange}
-                name='title'
-                type='text'
-                value={activity.title}
-              />
-            </label>
-            <label>
-              Description
-              <textarea
-                onChange={handleInputChange}
-                name='description'
-                value={activity.description}
-              ></textarea>
-            </label>
-          </div>
+    <Fragment>
+      <Background />
+      <Section>
+        <div className='form-style-10'>
+          <h1>
+            Create new activity
+            <span>Fill the form and tell us about your activity!</span>
+          </h1>
+          <form onSubmit={handleSubmit}>
+            <div className='section'>
+              <span>1</span>About activity:
+            </div>
+            <div className='inner-wrap'>
+              <label>
+                Title
+                <input
+                  onChange={handleInputChange}
+                  name='title'
+                  type='text'
+                  value={activity.title}
+                />
+              </label>
+              <label>
+                Description
+                <textarea
+                  onChange={handleInputChange}
+                  name='description'
+                  value={activity.description}
+                ></textarea>
+              </label>
+            </div>
 
-          <div className='section'>
-            <span>2</span>Where it's will happen?
-          </div>
-          <div className='inner-wrap'>
-            <label>
-              City
-              <input
-                type='text'
-                onChange={handleInputChange}
-                name='city'
-                value={activity.city}
-              />
-            </label>
-            <label>
-              Venue
-              <input
-                type='text'
-                onChange={handleInputChange}
-                name='venue'
-                value={activity.venue}
-              />
-            </label>
-          </div>
+            <div className='section'>
+              <span>2</span>Where it's will happen?
+            </div>
+            <div className='inner-wrap'>
+              <label>
+                City
+                <input
+                  type='text'
+                  onChange={handleInputChange}
+                  name='city'
+                  value={activity.city}
+                />
+              </label>
+              <label>
+                Venue
+                <input
+                  type='text'
+                  onChange={handleInputChange}
+                  name='venue'
+                  value={activity.venue}
+                />
+              </label>
+            </div>
 
-          <div className='section'>
-            <span>3</span>When and what?
-          </div>
-          <div className='inner-wrap'>
-            <label>
-              Date
-              <input
-                type='datetime-local'
-                onChange={handleInputChange}
-                name='date'
-                value={activity.date}
-              />
-            </label>
-            <label>
-              Category
-              <input
-                type='text'
-                onChange={handleInputChange}
-                name='category'
-                value={activity.category}
-              />
-            </label>
-          </div>
-          <div className='button_container'>
-            <button className='details_button' type='submit' content='Submit'>
-              {props.updateLoading ? 'Wait..' : 'Add'}
-            </button>
-            <button
-              className='details_button light_detail_button'
-              onClick={() => props.setEditMode(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
-    </Section>
+            <div className='section'>
+              <span>3</span>When and what?
+            </div>
+            <div className='inner-wrap'>
+              <label>
+                Date
+                <input
+                  type='datetime-local'
+                  onChange={handleInputChange}
+                  name='date'
+                  value={activity.date}
+                />
+              </label>
+              <label>
+                Category
+                <input
+                  type='text'
+                  onChange={handleInputChange}
+                  name='category'
+                  value={activity.category}
+                />
+              </label>
+            </div>
+            <div className='button_container'>
+              <button className='details_button' type='submit' content='Submit'>
+                {props.updateLoading ? 'Wait..' : 'Add'}
+              </button>
+              <button
+                className='details_button light_detail_button'
+                onClick={() => props.setEditMode(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </Section>
+    </Fragment>
   );
 };
 const mapStateToProps = ({
@@ -157,9 +160,22 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityForm);
 
-const Section = styled.section`
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  margin: 1rem;
+  height: 151%;
+  z-index: 999;
+  background-color: transparent;
+  backdrop-filter: blur(2px);
+`;
+
+const Section = styled.section`
+  max-width: 100%;
+  margin: 0 auto;
+  z-index: 999;
+  position: relative;
   .form-style-10 {
     padding: 3rem;
     background: var(--baseColor-Light);

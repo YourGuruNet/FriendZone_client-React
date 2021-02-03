@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -6,52 +6,56 @@ import {
   handleDeleteActivity,
   setEditMode,
 } from './reducer/ActivitiesActions';
+import { Background } from './ActivityForm';
 
 const ActivityDetails = (props) => {
   return props.selectedActivity === null ? (
     <div />
   ) : (
-    <Section>
-      <img
-        src={`assets/categoryImages/${props.selectedActivity.category}.jpg`}
-        alt='activity'
-        className='details_image'
-      />
-      <h1 className='details_title'>{props.selectedActivity.title}</h1>
-      <p className='details_text'>{props.selectedActivity.description}</p>
-      <div className='bottom_container'>
-        <div className='location'>
-          <p className='location-item'>{props.selectedActivity.city},</p>
-          <p className='location-item'>{props.selectedActivity.venue}</p>
+    <Fragment>
+      <Background />
+      <Section>
+        <img
+          src={`assets/categoryImages/${props.selectedActivity.category}.jpg`}
+          alt='activity'
+          className='details_image'
+        />
+        <h1 className='details_title'>{props.selectedActivity.title}</h1>
+        <p className='details_text'>{props.selectedActivity.description}</p>
+        <div className='bottom_container'>
+          <div className='location'>
+            <p className='location-item'>{props.selectedActivity.city},</p>
+            <p className='location-item'>{props.selectedActivity.venue}</p>
+          </div>
+          <div className='button_container'>
+            <p className='details_date'>
+              <span>{props.selectedActivity.date.slice(0, 10)}</span>{' '}
+              {props.selectedActivity.date.slice(11, 20)}
+            </p>
+            <button
+              className='details_button'
+              onClick={() => props.setEditMode(true)}
+            >
+              Edit
+            </button>
+            <button
+              className='details_button light_detail_button'
+              onClick={() =>
+                props.handleDeleteActivity(props.selectedActivity.id)
+              }
+            >
+              {props.updateLoading ? 'Wait..' : 'Delete'}
+            </button>
+            <button
+              className='details_button light_detail_button'
+              onClick={() => props.getActivity(null)}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
-        <div className='button_container'>
-          <p className='details_date'>
-            <span>{props.selectedActivity.date.slice(0, 10)}</span>{' '}
-            {props.selectedActivity.date.slice(11, 20)}
-          </p>
-          <button
-            className='details_button'
-            onClick={() => props.setEditMode(true)}
-          >
-            Edit
-          </button>
-          <button
-            className='details_button light_detail_button'
-            onClick={() =>
-              props.handleDeleteActivity(props.selectedActivity.id)
-            }
-          >
-            {props.updateLoading ? 'Wait..' : 'Delete'}
-          </button>
-          <button
-            className='details_button light_detail_button'
-            onClick={() => props.getActivity(null)}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </Section>
+      </Section>
+    </Fragment>
   );
 };
 
@@ -81,6 +85,7 @@ const Section = styled.section`
   border-radius: 0.5rem 0.5rem 0.5rem 0;
   overflow: hidden;
   position: relative;
+  z-index: 999;
 
   .details_image {
     width: 100%;
