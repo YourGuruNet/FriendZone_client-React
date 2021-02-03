@@ -3,6 +3,7 @@ import { ActivitiesApiCall } from '../../../app/api/api';
 
 export const activitiesConst = {
   SET_LOADING: 'SET_LOADING',
+  SET_UPDATE_LOADING: 'SET_UPDATE_LOADING',
   SET_EDIT_MODE: 'SET_EDIT_MODE',
   GET_ACTIVITIES: 'GET_ACTIVITIES',
   GET_ACTIVITY: 'GET_ACTIVITY',
@@ -14,6 +15,9 @@ export const activitiesConst = {
 
 export const setLoading = () => {
   return { type: activitiesConst.SET_LOADING };
+};
+export const setUpdateLoading = () => {
+  return { type: activitiesConst.SET_UPDATE_LOADING };
 };
 
 export const setEditMode = (boole) => {
@@ -51,8 +55,8 @@ export const getActivity = (activity) => {
 
 export const handleDeleteActivity = (id) => {
   return async function (dispatch) {
+    dispatch(setUpdateLoading());
     await ActivitiesApiCall.delete(id).then(() => {
-      dispatch(setLoading());
       dispatch({ type: activitiesConst.DELETE_ACTIVITY, payload: id });
     });
   };
@@ -62,8 +66,8 @@ export const handleDeleteActivity = (id) => {
 
 export const handleEditActivity = (activity) => {
   return async function (dispatch) {
+    dispatch(setUpdateLoading());
     await ActivitiesApiCall.update(activity).then(() => {
-      dispatch(setLoading());
       dispatch({
         type: activitiesConst.HANDLE_EDIT_ACTIVITY,
         payload: activity,
@@ -74,8 +78,8 @@ export const handleEditActivity = (activity) => {
 
 export const handleCreateActivity = (activity) => {
   return async function (dispatch) {
+    dispatch(setUpdateLoading());
     await ActivitiesApiCall.create(activity).then(() => {
-      dispatch(setLoading());
       dispatch({
         type: activitiesConst.HANDLE_CREATE_ACTIVITY,
         payload: activity,

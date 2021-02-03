@@ -125,7 +125,7 @@ const ActivityForm = (props) => {
           </div>
           <div className='button_container'>
             <button className='details_button' type='submit' content='Submit'>
-              Add
+              {props.updateLoading ? 'Wait..' : 'Add'}
             </button>
             <button
               className='details_button light_detail_button'
@@ -139,8 +139,10 @@ const ActivityForm = (props) => {
     </Section>
   );
 };
-const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
-  return { selectedActivity };
+const mapStateToProps = ({
+  activitiesState: { selectedActivity, updateLoading },
+}) => {
+  return { selectedActivity, updateLoading };
 };
 
 // Functions

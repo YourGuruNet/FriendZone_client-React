@@ -6,12 +6,15 @@ const defaultState = {
   activities: [],
   selectedActivity: null,
   editMode: false,
+  updateLoading: false,
 };
 // Reducer setup
 export const ActivitiesReducer = (state = defaultState, action) => {
   switch (action.type) {
     case activitiesConst.SET_LOADING:
       return { ...state, loading: true };
+    case activitiesConst.SET_UPDATE_LOADING:
+      return { ...state, updateLoading: true };
     case activitiesConst.GET_ACTIVITIES:
       return { ...state, loading: false, activities: action.payload };
     case activitiesConst.GET_ACTIVITY:
@@ -30,14 +33,14 @@ export const ActivitiesReducer = (state = defaultState, action) => {
     case activitiesConst.HANDLE_CREATE_ACTIVITY:
       return {
         ...state,
-        loading: false,
+        updateLoading: false,
         activities: [...state.activities, action.payload],
         editMode: false,
       };
     case activitiesConst.HANDLE_EDIT_ACTIVITY:
       return {
         ...state,
-        loading: false,
+        updateLoading: false,
         activities: [
           ...state.activities.filter((item) => item.id !== action.payload.id),
           action.payload,
@@ -48,11 +51,11 @@ export const ActivitiesReducer = (state = defaultState, action) => {
     case activitiesConst.DELETE_ACTIVITY:
       return {
         ...state,
-        loading: false,
         activities: [
           ...state.activities.filter((item) => item.id !== action.payload),
         ],
         selectedActivity: null,
+        updateLoading: false,
       };
     default:
       return state;

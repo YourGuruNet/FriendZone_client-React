@@ -41,7 +41,7 @@ const ActivityDetails = (props) => {
               props.handleDeleteActivity(props.selectedActivity.id)
             }
           >
-            Delete
+            {props.updateLoading ? 'Wait..' : 'Delete'}
           </button>
           <button
             className='details_button light_detail_button'
@@ -55,8 +55,10 @@ const ActivityDetails = (props) => {
   );
 };
 
-const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
-  return { selectedActivity };
+const mapStateToProps = ({
+  activitiesState: { selectedActivity, updateLoading },
+}) => {
+  return { selectedActivity, updateLoading };
 };
 
 // Functions
