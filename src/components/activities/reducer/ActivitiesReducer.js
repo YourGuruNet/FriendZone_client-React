@@ -21,7 +21,10 @@ export const ActivitiesReducer = (state = defaultState, action) => {
         selectedActivity: action.payload,
       };
     case activitiesConst.SET_EDIT_MODE:
-      return { ...state, editMode: action.payload };
+      return {
+        ...state,
+        editMode: action.payload,
+      };
     case activitiesConst.NEW_ACTIVITY:
       return { ...state, editMode: true, selectedActivity: null };
     case activitiesConst.HANDLE_CREATE_ACTIVITY:
@@ -31,7 +34,6 @@ export const ActivitiesReducer = (state = defaultState, action) => {
         activities: [...state.activities, action.payload],
         editMode: false,
       };
-
     case activitiesConst.HANDLE_EDIT_ACTIVITY:
       return {
         ...state,
@@ -41,6 +43,7 @@ export const ActivitiesReducer = (state = defaultState, action) => {
           action.payload,
         ],
         editMode: false,
+        selectedActivity: action.payload,
       };
     case activitiesConst.DELETE_ACTIVITY:
       return {

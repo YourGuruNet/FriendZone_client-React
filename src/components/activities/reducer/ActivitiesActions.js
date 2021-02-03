@@ -41,19 +41,6 @@ export const getActivities = () => {
   };
 };
 
-export const handleCreateActivity = (activity) => {
-  console.log(activity);
-  return async function (dispatch) {
-    await ActivitiesApiCall.create(activity).then(() => {
-      dispatch(setLoading());
-      dispatch({
-        type: activitiesConst.HANDLE_CREATE_ACTIVITY,
-        payload: activity,
-      });
-    });
-  };
-};
-
 export const getActivity = (activity) => {
   return function (dispatch) {
     dispatch(setEditMode(false));
@@ -63,9 +50,11 @@ export const getActivity = (activity) => {
 };
 
 export const handleDeleteActivity = (id) => {
-  return function (dispatch) {
-    dispatch(setLoading());
-    dispatch({ type: activitiesConst.DELETE_ACTIVITY, payload: id });
+  return async function (dispatch) {
+    await ActivitiesApiCall.delete(id).then(() => {
+      dispatch(setLoading());
+      dispatch({ type: activitiesConst.DELETE_ACTIVITY, payload: id });
+    });
   };
 };
 
@@ -73,10 +62,24 @@ export const handleDeleteActivity = (id) => {
 
 export const handleEditActivity = (activity) => {
   return async function (dispatch) {
-    dispatch(setLoading());
-    dispatch({
-      type: activitiesConst.HANDLE_EDIT_ACTIVITY,
-      payload: activity,
+    await ActivitiesApiCall.update(activity).then(() => {
+      dispatch(setLoading());
+      dispatch({
+        type: activitiesConst.HANDLE_EDIT_ACTIVITY,
+        payload: activity,
+      });
+    });
+  };
+};
+
+export const handleCreateActivity = (activity) => {
+  return async function (dispatch) {
+    await ActivitiesApiCall.create(activity).then(() => {
+      dispatch(setLoading());
+      dispatch({
+        type: activitiesConst.HANDLE_CREATE_ACTIVITY,
+        payload: activity,
+      });
     });
   };
 };
