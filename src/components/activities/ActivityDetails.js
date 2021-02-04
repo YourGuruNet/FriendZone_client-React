@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -8,6 +8,7 @@ import {
 } from './reducer/ActivitiesActions';
 import { Background } from './ActivityForm';
 import { Popup } from '../../app/layout/styles';
+import { Link } from 'react-router-dom';
 
 const ActivityDetails = (props) => {
   return props.selectedActivity === null ? (
@@ -25,25 +26,32 @@ const ActivityDetails = (props) => {
         <p className='details_text'>{props.selectedActivity.description}</p>
         <div className='bottom_container'>
           <div className='location'>
-            <p className='location-item'>{props.selectedActivity.city},</p>
-            <p className='location-item'>{props.selectedActivity.venue}</p>
-          </div>
-          <div className='button_container'>
             <p className='details_date'>
               <span>{props.selectedActivity.date.slice(0, 10)}</span>{' '}
               {props.selectedActivity.date.slice(11, 20)}
             </p>
+            <p className='location-item'>{props.selectedActivity.city},</p>
+            <p className='location-item'>{props.selectedActivity.venue}</p>
+          </div>
+          <div className='button_container'>
             <button
               className='details_button'
               onClick={() => props.setEditMode(true)}
             >
               Edit
             </button>
+            <Link
+              to={`/activity/${props.selectedActivity.id}`}
+              className='details_button'
+              //  onClick={() => props.getActivity(null)}
+            >
+              Full view
+            </Link>
             <button
-              className='details_button light_detail_button'
               onClick={() =>
                 props.handleDeleteActivity(props.selectedActivity.id)
               }
+              className='details_button light_detail_button'
             >
               {props.updateLoading ? 'Wait..' : 'Delete'}
             </button>
@@ -122,6 +130,7 @@ const Section = styled.section`
     color: var(--baseColor);
     font-size: 1.2rem;
     transition: all 0.3s;
+    text-decoration: none;
     cursor: pointer;
     outline: none;
     :hover {
@@ -172,6 +181,9 @@ const Section = styled.section`
 
   .location-item {
     letter-spacing: 0.1rem;
+    border: solid 0.1rem transparent;
+    transition: all 0.3s;
+    padding: 0.3rem 0;
   }
 
   .location-item:last-child {

@@ -10,8 +10,8 @@ const ActivityList = (props) => {
       {props.activities.map((activity) => {
         //console.log(activity.id);
         return (
-          <Popup>
-            <div className='activity_item' key={activity.id}>
+          <Popup key={activity.id}>
+            <div className='activity_item'>
               <h1 className='title'>{activity.title}</h1>
               <p className='date'>
                 <span>{activity.date.slice(0, 10)}</span>{' '}

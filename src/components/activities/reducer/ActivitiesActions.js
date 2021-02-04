@@ -87,3 +87,11 @@ export const handleCreateActivity = (activity) => {
     });
   };
 };
+
+// Getting activity from the database when reloading page or full view button press
+export const loadActivityFromBackend = (id) => {
+  return async function (dispatch) {
+    let activity = await ActivitiesApiCall.details(id);
+    dispatch({ type: activitiesConst.GET_ACTIVITY, payload: activity });
+  };
+};

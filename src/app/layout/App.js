@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import ActivityForm from '../../components/activities/ActivityForm';
+import FullViewActivity from '../../components/activities/FullViewActivity';
 import NavigationBar from '../../components/NavigationBar';
 import Activities from '../../pages/Activities';
 import Home from '../../pages/Home';
@@ -16,8 +16,8 @@ const App = () => {
         <Route path='/activities'>
           <Activities />
         </Route>
-        <Route path='/new-activity'>
-          <ActivityForm />
+        <Route path='/activity/:id'>
+          <FullViewActivity />
         </Route>
       </Switch>
     </Fragment>
