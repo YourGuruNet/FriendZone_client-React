@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getActivity } from './reducer/ActivitiesActions';
+import { Popup } from '../../app/layout/styles';
 
 const ActivityList = (props) => {
   return (
@@ -9,27 +10,29 @@ const ActivityList = (props) => {
       {props.activities.map((activity) => {
         //console.log(activity.id);
         return (
-          <div className='activity_item' key={activity.id}>
-            <h1 className='title'>{activity.title}</h1>
-            <p className='date'>
-              <span>{activity.date.slice(0, 10)}</span>{' '}
-              {activity.date.slice(11, 20)}
-            </p>
-            <p>{activity.description}</p>
-            <div className='location'>
-              <p className='location-item'>{activity.city},</p>
-              <p className='location-item'>{activity.venue}</p>
+          <Popup>
+            <div className='activity_item' key={activity.id}>
+              <h1 className='title'>{activity.title}</h1>
+              <p className='date'>
+                <span>{activity.date.slice(0, 10)}</span>{' '}
+                {activity.date.slice(11, 20)}
+              </p>
+              <p>{activity.description}</p>
+              <div className='location'>
+                <p className='location-item'>{activity.city},</p>
+                <p className='location-item'>{activity.venue}</p>
+              </div>
+              <div className='button_container'>
+                <p className='hashtag'>#{activity.category}</p>
+                <button
+                  className='details_button'
+                  onClick={() => props.getActivity(activity)}
+                >
+                  Details
+                </button>
+              </div>
             </div>
-            <div className='button_container'>
-              <p className='hashtag'>#{activity.category}</p>
-              <button
-                className='details_button'
-                onClick={() => props.getActivity(activity)}
-              >
-                Details
-              </button>
-            </div>
-          </div>
+          </Popup>
         );
       })}
     </ActivitySection>

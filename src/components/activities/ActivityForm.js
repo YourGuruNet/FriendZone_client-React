@@ -7,6 +7,7 @@ import {
   setEditMode,
 } from './reducer/ActivitiesActions';
 import uuid from 'react-uuid';
+import { Popup } from '../../app/layout/styles';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
@@ -46,7 +47,7 @@ const ActivityForm = (props) => {
   };
 
   return (
-    <Fragment>
+    <Popup>
       <Background />
       <Section>
         <div className='form-style-10'>
@@ -139,7 +140,7 @@ const ActivityForm = (props) => {
           </form>
         </div>
       </Section>
-    </Fragment>
+    </Popup>
   );
 };
 const mapStateToProps = ({

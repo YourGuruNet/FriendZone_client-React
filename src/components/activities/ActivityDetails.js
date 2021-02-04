@@ -7,12 +7,13 @@ import {
   setEditMode,
 } from './reducer/ActivitiesActions';
 import { Background } from './ActivityForm';
+import { Popup } from '../../app/layout/styles';
 
 const ActivityDetails = (props) => {
   return props.selectedActivity === null ? (
     <div />
   ) : (
-    <Fragment>
+    <Popup>
       <Background />
       <Section>
         <img
@@ -55,7 +56,7 @@ const ActivityDetails = (props) => {
           </div>
         </div>
       </Section>
-    </Fragment>
+    </Popup>
   );
 };
 
