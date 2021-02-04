@@ -7,7 +7,7 @@ import {
   setEditMode,
 } from './reducer/ActivitiesActions';
 import uuid from 'react-uuid';
-import { Popup } from '../../app/layout/styles';
+import { Background, Popup } from '../../app/layout/styles';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
@@ -160,17 +160,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityForm);
-
-export const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 151%;
-  z-index: 999;
-  background-color: transparent;
-  backdrop-filter: blur(2px);
-`;
 
 const Section = styled.section`
   max-width: 100%;

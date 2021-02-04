@@ -6,8 +6,8 @@ import {
   handleDeleteActivity,
   setEditMode,
 } from './reducer/ActivitiesActions';
-import { Background } from './ActivityForm';
-import { Popup } from '../../app/layout/styles';
+
+import { Background, Popup } from '../../app/layout/styles';
 import { Link } from 'react-router-dom';
 
 const ActivityDetails = (props) => {
