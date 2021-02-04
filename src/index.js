@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import App from './app/layout/App';
 import { ActivitiesReducer } from './components/activities/reducer/ActivitiesReducer';
 import { BrowserRouter } from 'react-router-dom';
+import { ScrollToTop } from './app/layout/ScrollToTop';
 
 // Store setup
 const middleware = [thunk];
@@ -22,6 +23,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
+      <ScrollToTop />
       <App />
     </BrowserRouter>
   </Provider>,
