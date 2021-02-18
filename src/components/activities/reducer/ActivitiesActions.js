@@ -1,5 +1,4 @@
 import { ActivitiesApiCall } from '../../../app/api/api';
-//import { url } from '../../../app/url/Url';
 
 export const activitiesConst = {
   SET_LOADING: 'SET_LOADING',

@@ -8,7 +8,6 @@ const ActivityList = (props) => {
   return (
     <ActivitySection>
       {props.activities.map((activity) => {
-        //console.log(activity.id);
         return (
           <Popup key={activity.id}>
             <div className='activity_item'>
@@ -26,8 +25,7 @@ const ActivityList = (props) => {
                 <p className='hashtag'>#{activity.category}</p>
                 <button
                   className='details_button'
-                  onClick={() => props.getActivity(activity)}
-                >
+                  onClick={() => props.getActivity(activity)}>
                   Details
                 </button>
               </div>
