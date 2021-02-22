@@ -1,6 +1,6 @@
 import React from 'react';
-import ActivityDetails from './ActivityDetails';
-import ActivityForm from './ActivityForm';
+import ActivityDetails from '../ActivityDetails';
+import ActivityForm from '../ActivityForm';
 import { connect } from 'react-redux';
 
 const ActivityDashboard = (props) => {

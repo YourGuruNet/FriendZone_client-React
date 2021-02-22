@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import styled from 'styled-components';
-import ActivityList from '../components/activities/ActivityList';
+import ActivityList from '../components/activities/dashboard/ActivityList';
 import { getActivities } from '../components/activities/reducer/ActivitiesActions';
-import ActivityDashboard from '../components/activities/ActivityDashboard';
+import ActivityDashboard from '../components/activities/dashboard/ActivityDashboard';
 
 const Activities = ({ getActivities, loading }) => {
   useEffect(() => {
