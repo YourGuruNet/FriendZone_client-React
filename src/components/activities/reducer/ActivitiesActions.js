@@ -62,7 +62,6 @@ export const handleDeleteActivity = (id) => {
 };
 
 // Form
-
 export const handleEditActivity = (activity) => {
   return async function (dispatch) {
     dispatch(setUpdateLoading());

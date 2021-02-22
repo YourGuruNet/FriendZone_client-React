@@ -1,19 +1,43 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getActivity } from '../reducer/ActivitiesActions';
 import ActivityListItem from '../dashboard/ActivityListItem';
 
-const ActivityList = (props) => {
+const ActivityList = ({ activities, getActivity }) => {
+  // this gives an object with dates as keys
+  const group = activities.reduce((group, activity) => {
+    const date = activity.date.split('T')[0];
+    if (!group[date]) {
+      group[date] = [];
+    }
+    group[date].push(activity);
+    return group;
+  }, {});
+
+  // Edit: to add it in the array format instead
+  const groupArrays = Object.keys(group).map((date, id) => {
+    return {
+      date: date,
+      group: group[date],
+    };
+  });
   return (
     <ActivitySection>
-      {props.activities.map((activity) => {
+      {groupArrays.map((group) => {
         return (
-          <ActivityListItem
-            key={activity.id}
-            activity={activity}
-            getActivity={props.getActivity}
-          />
+          <Fragment key={group.date}>
+            <h1 className='group_title'>{group.date}</h1>
+            {group.group.map((activity) => {
+              return (
+                <ActivityListItem
+                  key={activity.id}
+                  activity={activity}
+                  getActivity={getActivity}
+                />
+              );
+            })}
+          </Fragment>
         );
       })}
     </ActivitySection>
@@ -65,6 +89,14 @@ const ActivitySection = styled.section`
     span {
       font-weight: 700;
     }
+  }
+  .group_title {
+    letter-spacing: 0.1rem;
+    opacity: 0.8;
+    background-color: var(--baseColor-Light);
+    padding: 0.2rem 2rem;
+    display: inline-block;
+    border-radius: 0.3rem 0.3rem 0 0.3rem;
   }
 
   .hashtag {
