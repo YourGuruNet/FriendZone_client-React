@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
-import { loadActivityFromBackend } from './reducer/ActivitiesActions';
+import { loadActivityFromBackend } from '../reducer/ActivitiesActions';
 import { Link, useParams } from 'react-router-dom';
-import Loading from '../Loading';
+import Loading from '../../Loading';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
   getActivity,
   handleDeleteActivity,
   setEditMode,
-} from './reducer/ActivitiesActions';
-import { Popup } from '../../app/layout/styles';
+} from '../reducer/ActivitiesActions';
+import { Popup } from '../../../app/layout/styles';
+import ActivityDetailHeader from './ActivityDetailHeader';
+import ActivityDetailInfo from './ActivityDetailInfo';
+import ActivityDetailChat from './ActivityDetailChat';
+import ActivityDetailSideBar from './ActivityDetailSideBar';
 
 const FullViewActivity = ({ loadActivityFromBackend, selectedActivity }) => {
   const { id } = useParams();
@@ -22,28 +26,13 @@ const FullViewActivity = ({ loadActivityFromBackend, selectedActivity }) => {
   ) : (
     <Popup>
       <Section>
-        <h1 className='details_title'>{selectedActivity.title}</h1>
-        <img
-          src={`/assets/categoryImages/${selectedActivity.category}.jpg`}
-          alt='activity-2'
-          className='details_image'
-        />
-        <p className='details_text'>{selectedActivity.description}</p>
-        <div className='bottom_container'>
-          <div className='location'>
-            <p className='details_date'>
-              <span>{selectedActivity.date.slice(0, 10)}</span>{' '}
-              {selectedActivity.date.slice(11, 20)}
-            </p>
-            <p className='location-item'>{selectedActivity.city},</p>
-            <p className='location-item'>{selectedActivity.venue}</p>
-          </div>
-          <div className='button_container'>
-            <Link to='/activities' className='details_button'>
-              Go back
-            </Link>
-          </div>
+        <div>
+          <ActivityDetailHeader />
+
+          <ActivityDetailInfo />
+          <ActivityDetailChat />
         </div>
+        <ActivityDetailSideBar />
       </Section>
     </Popup>
   );
@@ -66,11 +55,15 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(FullViewActivity);
 
 const Section = styled.section`
-  width: 100%;
+  margin: 0 auto;
+  max-width: 150rem;
   padding: 10rem 8rem 0 8rem;
   overflow: hidden;
   position: relative;
+  display: grid;
+  grid-template-columns: 70% 30%;
 
+  //////
   .details_image {
     width: 100%;
     max-height: 40rem;
@@ -161,3 +154,28 @@ const Section = styled.section`
     padding-left: 0.5rem;
   }
 `;
+
+{
+  /* <h1 className='details_title'>{selectedActivity.title}</h1>
+<img
+  src={`/assets/categoryImages/${selectedActivity.category}.jpg`}
+  alt='activity-2'
+  className='details_image'
+/>
+<p className='details_text'>{selectedActivity.description}</p>
+<div className='bottom_container'>
+  <div className='location'>
+    <p className='details_date'>
+      <span>{selectedActivity.date.slice(0, 10)}</span>{' '}
+      {selectedActivity.date.slice(11, 20)}
+    </p>
+    <p className='location-item'>{selectedActivity.city},</p>
+    <p className='location-item'>{selectedActivity.venue}</p>
+  </div>
+  <div className='button_container'>
+    <Link to='/activities' className='details_button'>
+      Go back
+    </Link>
+  </div>
+</div> */
+}

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
-import FullViewActivity from '../../components/activities/FullViewActivity';
+import FullViewActivity from '../../components/activities/details/FullViewActivity';
+
 import NavigationBar from '../../components/NavigationBar';
 import Activities from '../../pages/Activities';
 import Home from '../../pages/Home';
