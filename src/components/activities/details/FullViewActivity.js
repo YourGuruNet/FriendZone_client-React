@@ -11,7 +11,6 @@ import {
 } from '../reducer/ActivitiesActions';
 import { Popup } from '../../../app/layout/styles';
 import ActivityDetailHeader from './ActivityDetailHeader';
-import ActivityDetailInfo from './ActivityDetailInfo';
 import ActivityDetailChat from './ActivityDetailChat';
 import ActivityDetailSideBar from './ActivityDetailSideBar';
 
@@ -27,9 +26,7 @@ const FullViewActivity = ({ loadActivityFromBackend, selectedActivity }) => {
     <Popup>
       <Section>
         <div>
-          <ActivityDetailHeader />
-
-          <ActivityDetailInfo />
+          <ActivityDetailHeader selectedActivity={selectedActivity} />
           <ActivityDetailChat />
         </div>
         <ActivityDetailSideBar />
@@ -62,6 +59,7 @@ const Section = styled.section`
   position: relative;
   display: grid;
   grid-template-columns: 70% 30%;
+  grid-gap: 5rem;
 
   //////
   .details_image {
