@@ -60,10 +60,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(ActivityList);
 const ActivitySection = styled.section`
   .activity_item {
     background-color: var(--baseColor-Light);
-    display: block;
+    display: flex;
     margin: 1rem;
     padding: 1rem;
     border-radius: 0.5rem 0.5rem 0 0.5rem;
+  }
+  .list_item-image {
+    width: 15rem;
+    height: 15rem;
+    padding: 1rem 2rem 1rem 1rem;
+  }
+  .text-container {
+    flex-grow: 1;
   }
 
   .title {
