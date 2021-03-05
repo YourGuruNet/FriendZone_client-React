@@ -1,7 +1,12 @@
 import React from 'react';
+import FilterCalendar from './FilterCalendar';
 
 const ActivityFilters = () => {
-  return <div>Filter</div>;
+  return (
+    <div>
+      <FilterCalendar />
+    </div>
+  );
 };
 
 export default ActivityFilters;

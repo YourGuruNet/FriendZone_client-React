@@ -9,10 +9,11 @@ import {
 
 import { Background, Popup } from '../../app/layout/styles';
 import { Link } from 'react-router-dom';
+import ActivityFilters from './dashboard/ActivityFilters';
 
 const ActivityDetails = (props) => {
   return props.selectedActivity === null ? (
-    <div />
+    <ActivityFilters />
   ) : (
     <Popup>
       <Background />
@@ -36,8 +37,7 @@ const ActivityDetails = (props) => {
           <div className='button_container'>
             <button
               className='details_button'
-              onClick={() => props.setEditMode(true)}
-            >
+              onClick={() => props.setEditMode(true)}>
               Edit
             </button>
             <Link
@@ -51,14 +51,12 @@ const ActivityDetails = (props) => {
               onClick={() =>
                 props.handleDeleteActivity(props.selectedActivity.id)
               }
-              className='details_button light_detail_button'
-            >
+              className='details_button light_detail_button'>
               {props.updateLoading ? 'Wait..' : 'Delete'}
             </button>
             <button
               className='details_button light_detail_button'
-              onClick={() => props.getActivity(null)}
-            >
+              onClick={() => props.getActivity(null)}>
               Cancel
             </button>
           </div>
