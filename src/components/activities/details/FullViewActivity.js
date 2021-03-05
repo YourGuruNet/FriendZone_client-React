@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { loadActivityFromBackend } from '../reducer/ActivitiesActions';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Loading from '../../Loading';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import {
 } from '../reducer/ActivitiesActions';
 import { Popup } from '../../../app/layout/styles';
 import ActivityDetailHeader from './ActivityDetailHeader';
+
 import ActivityDetailChat from './ActivityDetailChat';
 import ActivityDetailSideBar from './ActivityDetailSideBar';
 
@@ -152,28 +153,3 @@ const Section = styled.section`
     padding-left: 0.5rem;
   }
 `;
-
-{
-  /* <h1 className='details_title'>{selectedActivity.title}</h1>
-<img
-  src={`/assets/categoryImages/${selectedActivity.category}.jpg`}
-  alt='activity-2'
-  className='details_image'
-/>
-<p className='details_text'>{selectedActivity.description}</p>
-<div className='bottom_container'>
-  <div className='location'>
-    <p className='details_date'>
-      <span>{selectedActivity.date.slice(0, 10)}</span>{' '}
-      {selectedActivity.date.slice(11, 20)}
-    </p>
-    <p className='location-item'>{selectedActivity.city},</p>
-    <p className='location-item'>{selectedActivity.venue}</p>
-  </div>
-  <div className='button_container'>
-    <Link to='/activities' className='details_button'>
-      Go back
-    </Link>
-  </div>
-</div> */
-}
