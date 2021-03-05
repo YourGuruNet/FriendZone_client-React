@@ -36,6 +36,11 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
+@media screen and (min-width: 75em) {
+  html {
+    font-size: 72.5%;
+  }
+}
 
 body {
   font-family: 'Oswald', sans-serif;
