@@ -18,7 +18,7 @@ const FilterCalendar = () => {
 
 export default FilterCalendar;
 const Section = styled.section`
-  //Calendar is class used inside react-calendar
+  //.react-calendar is class used inside react-calendar
   .react-calendar {
     width: 100%;
     border-radius: 0.5rem 0.5rem 0.5rem 0;
