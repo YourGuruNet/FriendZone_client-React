@@ -36,17 +36,10 @@ export default ActivityDetailChat;
 
 const Container = styled.div`
   /* Chat containers */
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-
-  /* Darker chat container */
-  .darker {
-    border-color: #ccc;
-    background-color: #ddd;
-  }
+  background-color: var(--baseColor-Light);
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  padding: 1rem;
+  margin: 1rem 0;
 
   /* Clear floats */
   :after {
@@ -55,12 +48,18 @@ const Container = styled.div`
     display: table;
   }
 
+  p {
+    font-size: 1.2rem;
+    padding: 1rem;
+    padding-left: 2rem;
+  }
+
   /* Style images */
   img {
     float: left;
-    max-width: 60px;
+    max-width: 6rem;
     width: 100%;
-    margin-right: 20px;
+    margin-right: 2rem;
     border-radius: 50%;
   }
 
@@ -74,12 +73,12 @@ const Container = styled.div`
   /* Style time text */
   .time-right {
     float: right;
-    color: #aaa;
+    color: var(--baseColor-Light-2);
   }
 
   /* Style time text */
   .time-left {
     float: left;
-    color: #999;
+    color: var(--baseColor-Light-2);
   }
 `;

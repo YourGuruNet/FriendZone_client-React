@@ -81,12 +81,13 @@ const Section = styled.section`
   }
   .button_container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2rem;
   }
 
   .details_button {
     padding: 0.2rem 0.5rem;
-    margin-left: 1rem;
+
     background-color: var(--baseColor-Dark-2);
     border: solid 0.1rem var(--baseColor-Dark-2);
     text-transform: uppercase;
@@ -139,7 +140,6 @@ const Section = styled.section`
     display: flex;
     justify-content: flex-end;
     opacity: 0.8;
-    padding-bottom: 1rem;
   }
 
   .location-item {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import image from '../../../assets/no-user-image.gif';
 const ActivityDetailSideBar = () => {
   return (
-    <div>
+    <DetailSection>
       <h1 className='details_title'> 3 peoples are going</h1>
       <Container>
         <img src={image} alt='Avatar' />
@@ -20,42 +20,35 @@ const ActivityDetailSideBar = () => {
         <p>Arvis Iļjins</p>
         <button className='details_button'>Fallow</button>
       </Container>
-    </div>
+    </DetailSection>
   );
 };
 
 export default ActivityDetailSideBar;
+
+const DetailSection = styled.div`
+  margin-top: 4.5rem;
+`;
 const Container = styled.div`
   /* Chat containers */
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
+
+  background-color: var(--baseColor-Light);
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  padding: 1rem;
+  margin: 1rem 0;
 
   p {
+    font-size: 1.5rem;
     padding: 1rem;
     padding-left: 2rem;
-  }
-  /* Darker chat container */
-  .darker {
-    border-color: #ccc;
-    background-color: #ddd;
-  }
-
-  /* Clear floats */
-  :after {
-    content: '';
-    clear: both;
-    display: table;
   }
 
   /* Style images */
   img {
     float: left;
-    max-width: 60px;
+    max-width: 6rem;
     width: 100%;
-    margin-right: 20px;
+    margin-right: 2rem;
     border-radius: 50%;
   }
 `;
