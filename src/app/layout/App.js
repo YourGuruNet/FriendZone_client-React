@@ -4,8 +4,8 @@ import FullViewActivity from '../../components/activities/details/FullViewActivi
 import NavigationBar from '../../components/NavigationBar';
 import Activities from '../../pages/Activities';
 import Home from '../../pages/Home';
-import ErrorPage from '../../pages/ErrorPage';
-import TestErrors from '../../pages/TestError';
+import ErrorPage from '../../components/errors/ErrorPage';
+import TestErrors from '../../components/errors/TestError';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
