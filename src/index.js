@@ -8,8 +8,9 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import App from './app/layout/App';
 import { ActivitiesReducer } from './components/activities/reducer/ActivitiesReducer';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { ScrollToTop } from './app/layout/ScrollToTop';
+import { createBrowserHistory } from 'history';
 
 // Store setup
 const middleware = [thunk];
@@ -20,12 +21,15 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
+// Added history function so we can use all over the page
+export const history = createBrowserHistory();
+
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <ScrollToTop />
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
