@@ -32,17 +32,18 @@ const NavigationBar = (props) => {
             <Link to='/activities' className='navigation_list-item'>
               Activities
             </Link>
+            <Link to='/error' className='navigation_list-item'>
+              ErrorTest
+            </Link>
             <Link
               to='/activities'
               className='navigation_list-item new_activity'
-              onClick={() => props.newActivity()}
-            >
+              onClick={() => props.newActivity()}>
               new activity
             </Link>
             <button
               className='navigation_list-item dark_mode-button'
-              onClick={() => setDarkMode(!darkMode)}
-            >
+              onClick={() => setDarkMode(!darkMode)}>
               {darkMode ? <BsSun /> : <GiMoon />}
             </button>
           </ul>
