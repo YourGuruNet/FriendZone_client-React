@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import FullViewActivity from '../../components/activities/details/FullViewActivity';
 import NavigationBar from '../../components/NavigationBar';
 import Activities from '../../pages/Activities';
 import Home from '../../pages/Home';
+import ErrorPage from '../../pages/ErrorPage';
 import TestErrors from '../../pages/TestError';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,23 +13,18 @@ const App = () => {
   return (
     <Fragment>
       <ToastContainer position='bottom-right' hideProgressBar />
-      <Route exact path='/'>
-        <Home />
-      </Route>
+      <Route exact path='/' component={Home} />
       <Route
         path={'/(.+)'}
         render={() => (
           <Fragment>
             <NavigationBar />
-            <Route path='/activities'>
-              <Activities />
-            </Route>
-            <Route path='/activity/:id'>
-              <FullViewActivity />
-            </Route>
-            <Route path='/error'>
-              <TestErrors />
-            </Route>
+            <Switch>
+              <Route path='/activities' component={Activities} />
+              <Route path='/activity/:id' component={FullViewActivity} />
+              <Route path='/error' component={TestErrors} />
+              <Route component={ErrorPage} />
+            </Switch>
           </Fragment>
         )}
       />
