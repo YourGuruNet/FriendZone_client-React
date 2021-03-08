@@ -1,6 +1,32 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
+
+// If getting on of errors show tost component with error message
+axios.interceptors.response.use(
+  async (response) => {
+    return response;
+  },
+  (error) => {
+    const { data, status } = error.response;
+    switch (status) {
+      case 400:
+        toast.error('Bad request');
+        break;
+      case 401:
+        toast.error('Unauthorized');
+        break;
+      case 404:
+        toast.error('Not found');
+        break;
+      case 500:
+        toast.error('Server error');
+        break;
+    }
+    return Promise.reject(error);
+  }
+);
 
 const responseBody = (response) => response.data;
 
