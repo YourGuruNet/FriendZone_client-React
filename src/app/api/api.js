@@ -32,7 +32,7 @@ axios.interceptors.response.use(
         history.push('/not-found');
         break;
       case 500:
-        toast.error('Server error');
+        toast.error(data.details);
         break;
     }
     return Promise.reject(error);

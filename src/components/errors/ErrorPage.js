@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-const ErrorPage = () => {
+const ErrorPage = ({ errorMessage }) => {
+  console.log({ errorMessage });
   return (
     <ErrorSection>
-      <h1>Error 404</h1>
+      <h1>{errorMessage != null ? errorMessage : 'Error 404'} </h1>
       <Link className='home_button' to='/'>
         Go back to home page
       </Link>
@@ -13,7 +15,10 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+const mapStateToProps = ({ activitiesState: { errorMessage } }) => {
+  return { errorMessage };
+};
+export default connect(mapStateToProps)(ErrorPage);
 
 const ErrorSection = styled.div`
   width: 100%;

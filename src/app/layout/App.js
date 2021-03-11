@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <Fragment>
-      <ToastContainer position='bottom-right' hideProgressBar />
+      <ToastContainer position='bottom-right' />
       <Route exact path='/' component={Home} />
       <Route
         path={'/(.+)'}

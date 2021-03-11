@@ -58,3 +58,7 @@ body {
 }
 /*.dark h1 {
 }*/
+
+.Toastify__toast {
+  width: 300rem;
+}
