@@ -8,7 +8,8 @@ import {
 } from './reducer/ActivitiesActions';
 import uuid from 'react-uuid';
 import { Background, Popup } from '../../app/layout/styles';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
@@ -46,7 +47,28 @@ const ActivityForm = (props) => {
   //     props.handleEditActivity(activity);
   //   }
   // };
-
+  const SignupSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    description: Yup.string()
+      .min(2, 'Too Short!')
+      .max(100, 'Too Long!')
+      .required('Required'),
+    city: Yup.string()
+      .min(2, 'Too Short!')
+      .max(100, 'Too Long!')
+      .required('Required'),
+    venue: Yup.string()
+      .min(2, 'Too Short!')
+      .max(100, 'Too Long!')
+      .required('Required'),
+    category: Yup.string()
+      .min(2, 'Too Short!')
+      .max(100, 'Too Long!')
+      .required('Required'),
+  });
   return (
     <Popup>
       <Background />
@@ -59,6 +81,7 @@ const ActivityForm = (props) => {
           </h1>
           <Formik
             initialValues={activity}
+            validationSchema={SignupSchema}
             onSubmit={(values) => console.log(values)}>
             {({ handleSubmit }) => (
               <Form onSubmit={handleSubmit}>
@@ -69,10 +92,22 @@ const ActivityForm = (props) => {
                   <label>
                     Title
                     <Field name='title' type='text' />
+                    <ErrorMessage
+                      name='title'
+                      render={(error) => (
+                        <label style={{ color: 'red' }}>{error}</label>
+                      )}
+                    />
                   </label>
                   <label>
                     Description
                     <Field name='description' type='text'></Field>
+                    <ErrorMessage
+                      name='description'
+                      render={(error) => (
+                        <label style={{ color: 'red' }}>{error}</label>
+                      )}
+                    />
                   </label>
                 </div>
 
@@ -83,10 +118,22 @@ const ActivityForm = (props) => {
                   <label>
                     City
                     <Field name='city' type='text' />
+                    <ErrorMessage
+                      name='city'
+                      render={(error) => (
+                        <label style={{ color: 'red' }}>{error}</label>
+                      )}
+                    />
                   </label>
                   <label>
                     Venue
                     <Field name='venue' type='text' />
+                    <ErrorMessage
+                      name='venue'
+                      render={(error) => (
+                        <label style={{ color: 'red' }}>{error}</label>
+                      )}
+                    />
                   </label>
                 </div>
 
@@ -101,6 +148,12 @@ const ActivityForm = (props) => {
                   <label>
                     Category
                     <Field name='category' type='text' />
+                    <ErrorMessage
+                      name='category'
+                      render={(error) => (
+                        <label style={{ color: 'red' }}>{error}</label>
+                      )}
+                    />
                   </label>
                 </div>
                 <div className='button_container'>
