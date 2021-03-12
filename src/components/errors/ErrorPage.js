@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const ErrorPage = () => {
   return (
     <ErrorSection>
-      <h1>'Error 404 </h1>
+      <h1>Error 404 </h1>
       <Link className='home_button' to='/'>
         Go back to home page
       </Link>

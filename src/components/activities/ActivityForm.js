@@ -8,6 +8,7 @@ import {
 } from './reducer/ActivitiesActions';
 import uuid from 'react-uuid';
 import { Background, Popup } from '../../app/layout/styles';
+import { Formik } from 'formik';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
@@ -25,119 +26,127 @@ const ActivityForm = (props) => {
   };
   const [activity, setActivity] = useState(initializeForm);
 
-  // Input changes
-  const handleInputChange = (event) => {
-    const { name, value } = event.currentTarget;
-    setActivity({ ...activity, [name]: value });
-  };
+  // // Input changes
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.currentTarget;
+  //   setActivity({ ...activity, [name]: value });
+  // };
 
-  //Submit
-  const handleSubmit = (event) => {
-    //Stop Page reloading
-    event.preventDefault();
-    if (activity.id === '') {
-      let newActivity = {
-        ...activity,
-        id: uuid(),
-      };
-      props.handleCreateActivity(newActivity);
-    } else {
-      props.handleEditActivity(activity);
-    }
-  };
+  // //Submit
+  // const handleSubmit = (event) => {
+  //   //Stop Page reloading
+  //   event.preventDefault();
+  //   if (activity.id === '') {
+  //     let newActivity = {
+  //       ...activity,
+  //       id: uuid(),
+  //     };
+  //     props.handleCreateActivity(newActivity);
+  //   } else {
+  //     props.handleEditActivity(activity);
+  //   }
+  // };
 
   return (
     <Popup>
       <Background />
+
       <Section>
         <div className='form-style-10'>
           <h1>
             Create new activity
             <span>Fill the form and tell us about your activity!</span>
           </h1>
-          <form onSubmit={handleSubmit}>
-            <div className='section'>
-              <span>1</span>About activity:
-            </div>
-            <div className='inner-wrap'>
-              <label>
-                Title
-                <input
-                  onChange={handleInputChange}
-                  name='title'
-                  type='text'
-                  value={activity.title}
-                />
-              </label>
-              <label>
-                Description
-                <textarea
-                  onChange={handleInputChange}
-                  name='description'
-                  value={activity.description}
-                ></textarea>
-              </label>
-            </div>
+          <Formik
+            initialValues={activity}
+            onSubmit={(values) => console.log(values)}>
+            {({ values: activity, handleChange, handleSubmit }) => (
+              <form onSubmit={handleSubmit}>
+                <div className='section'>
+                  <span>1</span>About activity:
+                </div>
+                <div className='inner-wrap'>
+                  <label>
+                    Title
+                    <input
+                      onChange={handleChange}
+                      name='title'
+                      type='text'
+                      value={activity.title}
+                    />
+                  </label>
+                  <label>
+                    Description
+                    <textarea
+                      onChange={handleChange}
+                      name='description'
+                      value={activity.description}></textarea>
+                  </label>
+                </div>
 
-            <div className='section'>
-              <span>2</span>Where it's will happen?
-            </div>
-            <div className='inner-wrap'>
-              <label>
-                City
-                <input
-                  type='text'
-                  onChange={handleInputChange}
-                  name='city'
-                  value={activity.city}
-                />
-              </label>
-              <label>
-                Venue
-                <input
-                  type='text'
-                  onChange={handleInputChange}
-                  name='venue'
-                  value={activity.venue}
-                />
-              </label>
-            </div>
+                <div className='section'>
+                  <span>2</span>Where it's will happen?
+                </div>
+                <div className='inner-wrap'>
+                  <label>
+                    City
+                    <input
+                      type='text'
+                      onChange={handleChange}
+                      name='city'
+                      value={activity.city}
+                    />
+                  </label>
+                  <label>
+                    Venue
+                    <input
+                      type='text'
+                      onChange={handleChange}
+                      name='venue'
+                      value={activity.venue}
+                    />
+                  </label>
+                </div>
 
-            <div className='section'>
-              <span>3</span>When and what?
-            </div>
-            <div className='inner-wrap'>
-              <label>
-                Date
-                <input
-                  type='datetime-local'
-                  onChange={handleInputChange}
-                  name='date'
-                  value={activity.date}
-                />
-              </label>
-              <label>
-                Category
-                <input
-                  type='text'
-                  onChange={handleInputChange}
-                  name='category'
-                  value={activity.category}
-                />
-              </label>
-            </div>
-            <div className='button_container'>
-              <button className='details_button' type='submit' content='Submit'>
-                {props.updateLoading ? 'Wait..' : 'Add'}
-              </button>
-              <button
-                className='details_button light_detail_button'
-                onClick={() => props.setEditMode(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+                <div className='section'>
+                  <span>3</span>When and what?
+                </div>
+                <div className='inner-wrap'>
+                  <label>
+                    Date
+                    <input
+                      type='datetime-local'
+                      onChange={handleChange}
+                      name='date'
+                      value={activity.date}
+                    />
+                  </label>
+                  <label>
+                    Category
+                    <input
+                      type='text'
+                      onChange={handleChange}
+                      name='category'
+                      value={activity.category}
+                    />
+                  </label>
+                </div>
+                <div className='button_container'>
+                  <button
+                    className='details_button'
+                    type='submit'
+                    content='Submit'>
+                    {props.updateLoading ? 'Wait..' : 'Add'}
+                  </button>
+                  <button
+                    className='details_button light_detail_button'
+                    onClick={() => props.setEditMode(false)}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            )}
+          </Formik>
         </div>
       </Section>
     </Popup>
