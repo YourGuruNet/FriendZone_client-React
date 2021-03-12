@@ -8,7 +8,7 @@ import {
 } from './reducer/ActivitiesActions';
 import uuid from 'react-uuid';
 import { Background, Popup } from '../../app/layout/styles';
-import { Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
@@ -60,27 +60,19 @@ const ActivityForm = (props) => {
           <Formik
             initialValues={activity}
             onSubmit={(values) => console.log(values)}>
-            {({ values: activity, handleChange, handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
+            {({ handleSubmit }) => (
+              <Form onSubmit={handleSubmit}>
                 <div className='section'>
                   <span>1</span>About activity:
                 </div>
                 <div className='inner-wrap'>
                   <label>
                     Title
-                    <input
-                      onChange={handleChange}
-                      name='title'
-                      type='text'
-                      value={activity.title}
-                    />
+                    <Field name='title' type='text' />
                   </label>
                   <label>
                     Description
-                    <textarea
-                      onChange={handleChange}
-                      name='description'
-                      value={activity.description}></textarea>
+                    <Field name='description' type='text'></Field>
                   </label>
                 </div>
 
@@ -90,21 +82,11 @@ const ActivityForm = (props) => {
                 <div className='inner-wrap'>
                   <label>
                     City
-                    <input
-                      type='text'
-                      onChange={handleChange}
-                      name='city'
-                      value={activity.city}
-                    />
+                    <Field name='city' type='text' />
                   </label>
                   <label>
                     Venue
-                    <input
-                      type='text'
-                      onChange={handleChange}
-                      name='venue'
-                      value={activity.venue}
-                    />
+                    <Field name='venue' type='text' />
                   </label>
                 </div>
 
@@ -114,21 +96,11 @@ const ActivityForm = (props) => {
                 <div className='inner-wrap'>
                   <label>
                     Date
-                    <input
-                      type='datetime-local'
-                      onChange={handleChange}
-                      name='date'
-                      value={activity.date}
-                    />
+                    <Field name='date' type='text' />
                   </label>
                   <label>
                     Category
-                    <input
-                      type='text'
-                      onChange={handleChange}
-                      name='category'
-                      value={activity.category}
-                    />
+                    <Field name='category' type='text' />
                   </label>
                 </div>
                 <div className='button_container'>
@@ -144,7 +116,7 @@ const ActivityForm = (props) => {
                     Cancel
                   </button>
                 </div>
-              </form>
+              </Form>
             )}
           </Formik>
         </div>
