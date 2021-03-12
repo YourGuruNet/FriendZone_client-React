@@ -32,9 +32,12 @@ axios.interceptors.response.use(
         history.push('/not-found');
         break;
       case 500:
-        toast.error(data.details);
+        toast.error(data.message);
         break;
+      default:
+        return;
     }
+
     return Promise.reject(error);
   }
 );
