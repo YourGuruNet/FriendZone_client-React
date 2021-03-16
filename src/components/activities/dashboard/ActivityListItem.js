@@ -4,6 +4,7 @@ import noImage from '../../../assets/no-user-image.gif';
 import { BiTimeFive } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go';
 const ActivityListItem = ({ activity, getActivity }) => {
+  const date = activity.date.toString();
   return (
     <Popup>
       <div className='activity_item'>
@@ -12,8 +13,8 @@ const ActivityListItem = ({ activity, getActivity }) => {
           <h1 className='title'>{activity.title}</h1>
           <h1>(Hosted by Arvis Iļjins)</h1>
           <p className='date'>
-            <BiTimeFive /> <span> {activity.date.slice(0, 10)}</span>{' '}
-            {activity.date.slice(11, 16)}
+            <BiTimeFive /> <span> {date.slice(0, 10)}</span>{' '}
+            {date.slice(11, 16)}
           </p>
           <div className='location'>
             <GoLocation /> <p className='location-item'> {activity.city},</p>

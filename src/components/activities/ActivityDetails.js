@@ -12,6 +12,9 @@ import { Link } from 'react-router-dom';
 import ActivityFilters from './dashboard/ActivityFilters';
 
 const ActivityDetails = (props) => {
+  const date = props.selectedActivity
+    ? props.selectedActivity.date.toString()
+    : '';
   return props.selectedActivity === null ? (
     <ActivityFilters />
   ) : (
@@ -28,8 +31,7 @@ const ActivityDetails = (props) => {
         <div className='bottom_container'>
           <div className='location'>
             <p className='details_date'>
-              <span>{props.selectedActivity.date.slice(0, 10)}</span>{' '}
-              {props.selectedActivity.date.slice(11, 20)}
+              <span>{date.slice(0, 10)}</span> {date.slice(11, 20)}
             </p>
             <p className='location-item'>{props.selectedActivity.city},</p>
             <p className='location-item'>{props.selectedActivity.venue}</p>

@@ -7,7 +7,8 @@ import ActivityListItem from '../dashboard/ActivityListItem';
 const ActivityList = ({ activities, getActivity }) => {
   // this gives an object with dates as keys
   const group = activities.reduce((group, activity) => {
-    const date = activity.date.split('T')[0];
+    const dateToString = activity.date.toString();
+    const date = dateToString.slice(0, 10);
     if (!group[date]) {
       group[date] = [];
     }

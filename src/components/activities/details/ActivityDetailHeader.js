@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 const ActivityDetailHeader = ({ selectedActivity }) => {
+  const date = selectedActivity.date.toString();
   return (
     <div>
       <div className='button_container'>
@@ -9,8 +10,7 @@ const ActivityDetailHeader = ({ selectedActivity }) => {
         </Link>
         <div className='location'>
           <p className='details_date'>
-            <span>{selectedActivity.date.slice(0, 10)}</span>{' '}
-            {selectedActivity.date.slice(11, 20)}
+            <span>{date.slice(0, 10)}</span> {date.slice(11, 20)}
           </p>
           <p className='location-item'>{selectedActivity.city},</p>
           <p className='location-item'>{selectedActivity.venue}</p>
