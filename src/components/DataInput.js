@@ -5,13 +5,13 @@ import { useField } from 'formik';
 const DataInput = (props) => {
   const [field, meta, helpers] = useField(props.name);
   return (
-    <label>
+    <label error={meta.touched && !!meta.error}>
       Date
       <DatePicker
         {...field}
         {...props}
-        selected={(field.values && new Date(field.values)) || new Date()}
-        onChange={(values) => helpers.setValue(values)}
+        selected={(field.value && new Date(field.value)) || null}
+        onChange={(value) => helpers.setValue(value)}
       />
       {meta.touched && meta.error ? (
         <label style={{ color: 'red' }}>{meta.error}</label>
