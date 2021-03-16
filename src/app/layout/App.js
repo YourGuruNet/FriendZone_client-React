@@ -8,6 +8,7 @@ import ErrorPage from '../../components/errors/ErrorPage';
 import TestErrors from '../../components/errors/TestError';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const App = () => {
   return (

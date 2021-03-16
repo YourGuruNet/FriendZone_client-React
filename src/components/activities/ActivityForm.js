@@ -10,6 +10,7 @@ import uuid from 'react-uuid';
 import { Background, Popup } from '../../app/layout/styles';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import DataInput from '../DataInput';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
@@ -49,23 +50,23 @@ const ActivityForm = (props) => {
   // };
   const SignupSchema = Yup.object().shape({
     title: Yup.string()
-      .min(2, 'Too Short!')
+      .min(3, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required'),
     description: Yup.string()
-      .min(2, 'Too Short!')
+      .min(3, 'Too Short!')
       .max(100, 'Too Long!')
       .required('Required'),
     city: Yup.string()
-      .min(2, 'Too Short!')
+      .min(3, 'Too Short!')
       .max(100, 'Too Long!')
       .required('Required'),
     venue: Yup.string()
-      .min(2, 'Too Short!')
+      .min(3, 'Too Short!')
       .max(100, 'Too Long!')
       .required('Required'),
     category: Yup.string()
-      .min(2, 'Too Short!')
+      .min(3, 'Too Short!')
       .max(100, 'Too Long!')
       .required('Required'),
   });
@@ -101,7 +102,7 @@ const ActivityForm = (props) => {
                   </label>
                   <label>
                     Description
-                    <Field name='description' type='text'></Field>
+                    <Field name='description' type='text' />
                     <ErrorMessage
                       name='description'
                       render={(error) => (
@@ -141,10 +142,14 @@ const ActivityForm = (props) => {
                   <span>3</span>When and what?
                 </div>
                 <div className='inner-wrap'>
-                  <label>
-                    Date
-                    <Field name='date' type='text' />
-                  </label>
+                  <DataInput
+                    name='date'
+                    showTimeSelect
+                    timeFormat='HH:mm'
+                    timeIntervals={15}
+                    timeCaption='time'
+                    dateFormat='MMMM d, yyyy h:mm aa'
+                  />
                   <label>
                     Category
                     <Field name='category' type='text' />
@@ -303,5 +308,9 @@ const Section = styled.section`
       background-color: var(--baseColor-Dark-2);
       color: var(--baseColor);
     }
+  }
+
+  .react-datepicker-wrapper {
+    width: 100%;
   }
 `;
