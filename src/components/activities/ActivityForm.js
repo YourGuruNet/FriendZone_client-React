@@ -29,8 +29,6 @@ const ActivityForm = (props) => {
   const [activity] = useState(initializeForm);
   //Submit
   const handleFormSubmit = (activity) => {
-    //Stop Page reloading
-    // event.preventDefault();
     if (activity.id === '') {
       let newActivity = {
         ...activity,
@@ -41,6 +39,8 @@ const ActivityForm = (props) => {
       props.handleEditActivity(activity);
     }
   };
+
+  //Validation Errors
   const SignupSchema = Yup.object().shape({
     title: Yup.string()
       .min(3, 'Too Short!')
@@ -62,6 +62,7 @@ const ActivityForm = (props) => {
       .min(3, 'Too Short!')
       .max(100, 'Too Long!')
       .required('Required'),
+    date: Yup.string().required('Data is required').nullable(),
   });
   return (
     <Popup>
@@ -77,7 +78,7 @@ const ActivityForm = (props) => {
             initialValues={activity}
             validationSchema={SignupSchema}
             onSubmit={(values) => handleFormSubmit(values)}>
-            {({ handleSubmit }) => (
+            {({ handleSubmit, isValid, isSubmitting, dirty }) => (
               <Form onSubmit={handleSubmit}>
                 <div className='section'>
                   <span>1</span>About activity:
@@ -156,6 +157,7 @@ const ActivityForm = (props) => {
                 </div>
                 <div className='button_container'>
                   <button
+                    disabled={isSubmitting || !dirty || !isValid}
                     className='details_button'
                     type='submit'
                     content='Submit'>
