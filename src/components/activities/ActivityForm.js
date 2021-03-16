@@ -26,28 +26,21 @@ const ActivityForm = (props) => {
           venue: '',
         };
   };
-  const [activity, setActivity] = useState(initializeForm);
-
-  // // Input changes
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.currentTarget;
-  //   setActivity({ ...activity, [name]: value });
-  // };
-
-  // //Submit
-  // const handleSubmit = (event) => {
-  //   //Stop Page reloading
-  //   event.preventDefault();
-  //   if (activity.id === '') {
-  //     let newActivity = {
-  //       ...activity,
-  //       id: uuid(),
-  //     };
-  //     props.handleCreateActivity(newActivity);
-  //   } else {
-  //     props.handleEditActivity(activity);
-  //   }
-  // };
+  const [activity] = useState(initializeForm);
+  //Submit
+  const handleFormSubmit = (activity) => {
+    //Stop Page reloading
+    // event.preventDefault();
+    if (activity.id === '') {
+      let newActivity = {
+        ...activity,
+        id: uuid(),
+      };
+      props.handleCreateActivity(newActivity);
+    } else {
+      props.handleEditActivity(activity);
+    }
+  };
   const SignupSchema = Yup.object().shape({
     title: Yup.string()
       .min(3, 'Too Short!')
@@ -83,7 +76,7 @@ const ActivityForm = (props) => {
           <Formik
             initialValues={activity}
             validationSchema={SignupSchema}
-            onSubmit={(values) => console.log(values)}>
+            onSubmit={(values) => handleFormSubmit(values)}>
             {({ handleSubmit }) => (
               <Form onSubmit={handleSubmit}>
                 <div className='section'>
