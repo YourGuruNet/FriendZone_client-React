@@ -1,3 +1,4 @@
+import { history } from '../../..';
 import { Account, ActivitiesApiCall } from '../../../app/api/api';
 
 export const activitiesConst = {
@@ -99,9 +100,19 @@ export const loadActivityFromBackend = (id) => {
 
 export const login = (user) => {
   return async function (dispatch) {
-    dispatch(setUpdateLoading());
-    await Account.login(user).then((response) => {
-      console.log(response);
+    await Account.login(user).then(() => {
+      setToken(user.token);
+      history.push('/activities');
     });
   };
+};
+
+export const setToken = (token) => {
+  if (token) window.localStorage.setItem('jwt', token);
+};
+
+export const logout = () => {
+  setToken(null);
+  window.localStorage.removeItem('jwt');
+  history.push('/');
 };
