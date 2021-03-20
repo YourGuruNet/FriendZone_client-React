@@ -1,4 +1,4 @@
-import { ActivitiesApiCall } from '../../../app/api/api';
+import { Account, ActivitiesApiCall } from '../../../app/api/api';
 
 export const activitiesConst = {
   SET_LOADING: 'SET_LOADING',
@@ -92,5 +92,16 @@ export const loadActivityFromBackend = (id) => {
   return async function (dispatch) {
     let activity = await ActivitiesApiCall.details(id);
     dispatch({ type: activitiesConst.GET_ACTIVITY, payload: activity });
+  };
+};
+
+// Login and Registration actions
+
+export const login = (user) => {
+  return async function (dispatch) {
+    dispatch(setUpdateLoading());
+    await Account.login(user).then((response) => {
+      console.log(response);
+    });
   };
 };

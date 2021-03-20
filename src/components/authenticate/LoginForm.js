@@ -2,7 +2,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
 import { Background, Popup } from '../../app/layout/styles';
-const LoginForm = () => {
+import { connect } from 'react-redux';
+import { login } from '../activities/reducer/ActivitiesActions';
+const LoginForm = (props) => {
   return (
     <Popup>
       <Background />
@@ -11,8 +13,8 @@ const LoginForm = () => {
           <h1 className='center'>Login</h1>
           <Formik
             initialValues={{ email: '', password: '' }}
-            onSubmit={(values) => console.log(values)}>
-            {({ handleSubmit }) => (
+            onSubmit={(values) => props.login(values)}>
+            {({ handleSubmit, isSubmitting }) => (
               <Form onSubmit={handleSubmit} autoComplete='off'>
                 <div className='inner-wrap'>
                   <label>
@@ -40,7 +42,7 @@ const LoginForm = () => {
                   className='details_button'
                   type='submit'
                   content='Submit'>
-                  Login
+                  {isSubmitting ? 'Wait..' : '  Login'}
                 </button>
               </Form>
             )}
@@ -51,7 +53,13 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (user) => dispatch(login(user)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);
 
 const Section = styled.section`
   max-width: 50rem;
