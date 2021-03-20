@@ -12,6 +12,8 @@ export const activitiesConst = {
   HANDLE_CREATE_ACTIVITY: 'HANDLE_CREATE_ACTIVITY',
   DELETE_ACTIVITY: 'DELETE_ACTIVITY',
   GET_ERROR_MESSAGE: 'GET_ERROR_MESSAGE',
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
 };
 
 export const setLoading = () => {
@@ -100,19 +102,23 @@ export const loadActivityFromBackend = (id) => {
 
 export const login = (user) => {
   return async function (dispatch) {
-    await Account.login(user).then(() => {
-      setToken(user.token);
+    await Account.login(user).then((response) => {
+      setToken(response);
+      dispatch({ type: activitiesConst.LOGIN, payload: response });
       history.push('/activities');
     });
   };
 };
 
 export const setToken = (token) => {
-  if (token) window.localStorage.setItem('jwt', token);
+  if (token) window.localStorage.setItem('login', token);
 };
 
 export const logout = () => {
-  setToken(null);
-  window.localStorage.removeItem('jwt');
-  history.push('/');
+  return async function (dispatch) {
+    setToken(null);
+    window.localStorage.removeItem('login');
+    dispatch({ type: activitiesConst.LOGOUT });
+    history.push('/');
+  };
 };

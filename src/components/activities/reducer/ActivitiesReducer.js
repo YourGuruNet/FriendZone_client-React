@@ -7,6 +7,7 @@ const defaultState = {
   selectedActivity: null,
   editMode: false,
   updateLoading: false,
+  loginUser: null,
 };
 // Reducer setup
 export const ActivitiesReducer = (state = defaultState, action) => {
@@ -56,6 +57,16 @@ export const ActivitiesReducer = (state = defaultState, action) => {
         ],
         selectedActivity: null,
         updateLoading: false,
+      };
+    case activitiesConst.LOGIN:
+      return {
+        ...state,
+        loginUser: action.payload,
+      };
+    case activitiesConst.LOGOUT:
+      return {
+        ...state,
+        loginUser: null,
       };
     default:
       return state;

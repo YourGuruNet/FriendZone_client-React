@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import LoginForm from '../../components/authenticate/LoginForm';
+import HelloFromUser from '../../components/HelloFromUser';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         path={'/(.+)'}
         render={() => (
           <Fragment>
+            <HelloFromUser />
             <NavigationBar />
             <Switch>
               <Route path='/activities' component={Activities} />

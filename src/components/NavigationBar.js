@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const NavigationBar = (props) => {
+  console.log(props.loginUser);
   //Dark mode
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
@@ -53,8 +54,10 @@ const NavigationBar = (props) => {
   );
 };
 
-const mapStateToProps = ({ activitiesState: { selectedActivity } }) => {
-  return { selectedActivity };
+const mapStateToProps = ({
+  activitiesState: { selectedActivity, loginUser },
+}) => {
+  return { selectedActivity, loginUser };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -65,6 +68,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
 
 const Header = styled.header`
+  padding-top: 2.3rem;
   position: fixed;
   width: 100vw;
   z-index: 9999;
