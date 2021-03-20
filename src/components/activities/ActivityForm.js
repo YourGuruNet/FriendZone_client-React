@@ -67,7 +67,6 @@ const ActivityForm = (props) => {
   return (
     <Popup>
       <Background />
-
       <Section>
         <div className='form-style-10'>
           <h1>
@@ -200,110 +199,6 @@ const Section = styled.section`
   margin: 0 auto;
   z-index: 999;
   position: relative;
-  .form-style-10 {
-    padding: 3rem;
-    background: var(--baseColor-Light);
-    border-radius: 0.5rem 0.5rem 0.5rem 0;
-    overflow: hidden;
-  }
-  .form-style-10 .inner-wrap {
-    padding: 3rem;
-    background: var(--baseColor-Light-2);
-    border-radius: 0.5rem 0.5rem 0.5rem 0;
-    margin-bottom: 15px;
-  }
-  .form-style-10 h1 {
-    background: var(--baseColor-Light-2);
-    padding: 1rem 3rem 1.5rem 3rem;
-    margin: -3rem -3rem 3rem -3rem;
-    color: var(--baseColor-Light);
-    font-size: 2rem;
-  }
-  .form-style-10 h1 > span {
-    display: block;
-    margin-top: 0.2rem;
-    font-size: 1.3rem;
-  }
-  .form-style-10 label {
-    display: block;
-    font-size: 1.3rem;
-    color: var(--baseColor-Light);
-    margin-bottom: 1.5rem;
-  }
-  .form-style-10 input[type='text'],
-  .form-style-10 input[type='datetime-local'],
-  .form-style-10 textarea,
-  .form-style-10 select {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 8px;
-    border-radius: 0.5rem 0.5rem 0.5rem 0;
-    background-color: var(--baseColor-Light);
-    border: 0.1rem solid var(--baseColor-Light);
-    outline: none;
-    color: var(--baseColor-Light-2);
-    :active {
-      border-bottom: 0.1rem solid var(--success);
-    }
-    ::-webkit-calendar-picker-indicator {
-      filter: invert(0.3);
-    }
-  }
-
-  .form-style-10 .section {
-    font-size: 2rem;
-    color: var(--baseColor-Light-2);
-    margin-bottom: 0.5rem;
-  }
-  .form-style-10 .section span {
-    background: var(--baseColor-Light-2);
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    position: absolute;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border: 0.4rem solid var(--baseColor-Light);
-    font-size: 1.4rem;
-    margin-left: -4.5rem;
-    color: var(--baseColor-Light);
-    margin-top: -0.3rem;
-  }
-
-  .button_container {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .details_button {
-    padding: 0.2rem 0.5rem;
-    margin-left: 1rem;
-    background-color: var(--baseColor-Dark-2);
-    border: solid 0.1rem var(--baseColor-Dark-2);
-    text-transform: uppercase;
-    color: var(--baseColor);
-    font-size: 1.2rem;
-    transition: all 0.3s;
-    cursor: pointer;
-    outline: none;
-    :hover {
-      background-color: var(--baseColor);
-      color: var(--baseColor-Dark-2);
-    }
-    :active {
-      transform: scale(0.9);
-    }
-  }
-
-  .light_detail_button {
-    background-color: var(--baseColor);
-    color: var(--baseColor-Dark-2);
-
-    :hover {
-      background-color: var(--baseColor-Dark-2);
-      color: var(--baseColor);
-    }
-  }
 
   .react-datepicker-wrapper {
     width: 100%;

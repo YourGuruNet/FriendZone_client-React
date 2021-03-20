@@ -7,9 +7,14 @@ const Home = () => {
     <Container>
       <img src={Logo1} alt='friend zone' />
       <h1 className='home_title'>Welcome at FriendZone!</h1>
-      <Link className='home_button' to='/activities'>
-        Go to Activities list
-      </Link>
+      <div className='button_container'>
+        <Link className='home_button' to='/login'>
+          Register
+        </Link>
+        <Link className='home_button' to='/login'>
+          Login
+        </Link>
+      </div>
     </Container>
   );
 };
@@ -49,5 +54,8 @@ const Container = styled.div`
     :active {
       transform: scale(0.9);
     }
+  }
+  .button_container {
+    padding: 0.5rem;
   }
 `;
