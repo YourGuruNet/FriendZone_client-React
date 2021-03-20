@@ -59,3 +59,10 @@ export const ActivitiesApiCall = {
   update: (activity) => requests.put(`/activities/${activity.id}`, activity),
   delete: (id) => requests.del(`/activities/${id}`),
 };
+
+//Login, Register
+export const Account = {
+  current: () => requests.get('/account'),
+  login: (user) => requests.post('/account/login', user),
+  register: (user) => requests.post('/account/register', user),
+};
