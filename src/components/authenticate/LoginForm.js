@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Background, Popup } from '../../app/layout/styles';
 import { connect } from 'react-redux';
 import { login } from '../activities/reducer/ActivitiesActions';
+
 const LoginForm = (props) => {
   return (
     <Popup>
@@ -12,32 +13,32 @@ const LoginForm = (props) => {
         <div className='form-style-10'>
           <h1 className='center'>Login</h1>
           <Formik
-            initialValues={{ email: '', password: '' }}
-            onSubmit={(values) => props.login(values)}>
-            {({ handleSubmit, isSubmitting }) => (
+            initialValues={{ email: '', password: '', error: null }}
+            onSubmit={(values, { setErrors }) =>
+              props
+                .login(values)
+                .catch((error) =>
+                  setErrors({ error: 'Invalid Email or Password!' })
+                )
+            }>
+            {({ handleSubmit, isSubmitting, errors }) => (
               <Form onSubmit={handleSubmit} autoComplete='off'>
                 <div className='inner-wrap'>
                   <label>
                     Email
                     <Field name='email' type='email' />
-                    <ErrorMessage
-                      name='email'
-                      render={(error) => (
-                        <label style={{ color: 'red' }}>{error}</label>
-                      )}
-                    />
                   </label>
                   <label>
                     Password
                     <Field name='password' type='password' />
-                    <ErrorMessage
-                      name='password'
-                      render={(error) => (
-                        <label style={{ color: 'red' }}>{error}</label>
-                      )}
-                    />
                   </label>
                 </div>
+                <ErrorMessage
+                  name='error'
+                  render={() => (
+                    <label style={{ color: 'red' }}>{errors.error}</label>
+                  )}
+                />
                 <button
                   className='details_button'
                   type='submit'
