@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from './activities/reducer/ActivitiesActions';
+import { logout, openModal } from './activities/reducer/ActivitiesActions';
 
 const HelloFromUser = (props) => {
   return (
@@ -11,8 +10,8 @@ const HelloFromUser = (props) => {
         {props.loginUser === null ? (
           <h3 className='user_greeting'>
             Hey! come here to{' '}
-            <span className='login_button'>
-              <Link to='/login'>login</Link>
+            <span className='login_button' onClick={() => props.openModal()}>
+              login
             </span>
           </h3>
         ) : (
@@ -36,6 +35,7 @@ const mapStateToProps = ({ activitiesState: { loginUser } }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
+    openModal: () => dispatch(openModal()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HelloFromUser);
@@ -66,20 +66,15 @@ const UserGreeting = styled.section`
     padding-right: 0.5rem;
   }
   .login_button {
-    font-weight: 700;
+    background-color: transparent;
+    font-weight: 300;
+    outline: none;
     cursor: pointer;
     color: var(--baseColor-Light);
     border-bottom: solid 0.1rem var(--baseColor-Light);
     :hover {
-      color: var(--baseColor-Light);
+      color: var(--baseColor-Light-2);
       border-bottom: solid 0.1rem var(--baseColor-Light-2);
-    }
-    a {
-      text-decoration: none;
-      color: var(--baseColor-Light);
-      :hover {
-        color: var(--baseColor-Light-2);
-      }
     }
   }
   @media screen and (max-width: 25em) {

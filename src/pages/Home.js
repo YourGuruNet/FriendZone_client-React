@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Logo1 from '../assets/logo1.png';
 import { openModal } from '../components/activities/reducer/ActivitiesActions';
 import { connect } from 'react-redux';
+import LoginForm from '../components/authenticate/LoginForm';
 const Home = ({ openModal }) => {
   const localToken = window.localStorage.getItem('login');
   return (
@@ -17,10 +18,14 @@ const Home = ({ openModal }) => {
           </Link>
         ) : (
           <Fragment>
-            <button className='home_button' onClick={() => openModal()}>
+            <button
+              className='home_button'
+              onClick={() => openModal(<h1>Register</h1>)}>
               Register
             </button>
-            <button className='home_button' onClick={() => openModal()}>
+            <button
+              className='home_button'
+              onClick={() => openModal(<LoginForm />)}>
               Login
             </button>
           </Fragment>
@@ -36,7 +41,7 @@ const mapStateToProps = ({ activitiesState: { modal } }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openModal: () => dispatch(openModal()),
+    openModal: (content) => dispatch(openModal(content)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

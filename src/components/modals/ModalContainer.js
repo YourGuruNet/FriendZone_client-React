@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { closeModal } from '../activities/reducer/ActivitiesActions';
 import styled from 'styled-components';
 import { Background, Popup } from '../../app/layout/styles';
-import LoginForm from '../authenticate/LoginForm';
+
 const ModalContainer = ({ closeModal, modal }) => {
   if (modal) {
     return (
       <Popup>
-        <Background />
-        <Section>
-          <LoginForm />
-        </Section>
+        <Background onClick={() => closeModal()} />
+        <Section>{modal}</Section>
       </Popup>
     );
   } else {
@@ -38,6 +36,7 @@ const Section = styled.section`
   right: 0;
   bottom: 0;
   width: 40rem;
+  height: 40rem;
   margin: 0 auto;
   z-index: 999;
 `;

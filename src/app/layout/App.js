@@ -9,7 +9,6 @@ import TestErrors from '../../components/errors/TestError';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import LoginForm from '../../components/authenticate/LoginForm';
 import HelloFromUser from '../../components/HelloFromUser';
 import { connect } from 'react-redux';
 import {
@@ -45,7 +44,6 @@ const App = ({ getUser, setAppLoaded, appLoaded }) => {
               <Route path='/activities' component={Activities} />
               <Route path='/activity/:id' component={FullViewActivity} />
               <Route path='/error' component={TestErrors} />
-              <Route path='/login' component={LoginForm} />
               <Route component={ErrorPage} />
             </Switch>
           </Fragment>

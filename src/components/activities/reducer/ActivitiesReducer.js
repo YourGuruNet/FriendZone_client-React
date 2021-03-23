@@ -75,7 +75,7 @@ export const ActivitiesReducer = (state = defaultState, action) => {
     case activitiesConst.OPEN_MODAL:
       return { ...state, modal: action.payload };
     case activitiesConst.CLOSE_MODAL:
-      return { ...state, modal: action.payload };
+      return { ...state, modal: null };
     default:
       return state;
   }

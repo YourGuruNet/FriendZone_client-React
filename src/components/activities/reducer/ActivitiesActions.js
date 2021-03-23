@@ -110,6 +110,7 @@ export const login = (user) => {
       setToken(response.token);
       dispatch({ type: activitiesConst.LOGIN, payload: response });
       history.push('/activities');
+      dispatch(closeModal());
     });
   };
 };
@@ -144,22 +145,11 @@ export const openModal = (content) => {
   return async function (dispatch) {
     dispatch({
       type: activitiesConst.OPEN_MODAL,
-      payload: {
-        open: true,
-        body: content,
-      },
+      payload: content,
     });
   };
 };
 
 export const closeModal = () => {
-  return async function (dispatch) {
-    dispatch({
-      type: activitiesConst.CLOSE_MODAL,
-      payload: {
-        open: false,
-        body: null,
-      },
-    });
-  };
+  return { type: activitiesConst.CLOSE_MODAL };
 };
