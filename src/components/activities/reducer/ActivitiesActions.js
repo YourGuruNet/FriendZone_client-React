@@ -15,6 +15,8 @@ export const activitiesConst = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
   SET_APP_LOADING: 'SET_APP_LOADING',
+  OPEN_MODAL: 'OPEN_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
 };
 
 export const setLoading = () => {
@@ -135,4 +137,29 @@ export const getUser = () => {
 
 export const setAppLoaded = () => {
   return { type: activitiesConst.SET_APP_LOADING };
+};
+
+// Modals
+export const openModal = (content) => {
+  return async function (dispatch) {
+    dispatch({
+      type: activitiesConst.OPEN_MODAL,
+      payload: {
+        open: true,
+        body: content,
+      },
+    });
+  };
+};
+
+export const closeModal = () => {
+  return async function (dispatch) {
+    dispatch({
+      type: activitiesConst.CLOSE_MODAL,
+      payload: {
+        open: false,
+        body: null,
+      },
+    });
+  };
 };

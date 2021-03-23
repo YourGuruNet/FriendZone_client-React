@@ -9,6 +9,7 @@ export const defaultState = {
   updateLoading: false,
   loginUser: null,
   appLoaded: false,
+  modal: null,
 };
 // Reducer setup
 export const ActivitiesReducer = (state = defaultState, action) => {
@@ -71,6 +72,10 @@ export const ActivitiesReducer = (state = defaultState, action) => {
       };
     case activitiesConst.SET_APP_LOADING:
       return { ...state, appLoaded: true };
+    case activitiesConst.OPEN_MODAL:
+      return { ...state, modal: action.payload };
+    case activitiesConst.CLOSE_MODAL:
+      return { ...state, modal: action.payload };
     default:
       return state;
   }
