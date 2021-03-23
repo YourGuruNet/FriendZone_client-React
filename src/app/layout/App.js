@@ -17,6 +17,7 @@ import {
   setAppLoaded,
 } from '../../components/activities/reducer/ActivitiesActions';
 import Loading from '../../components/Loading';
+import ModalContainer from '../../components/modals/ModalContainer';
 const App = ({ getUser, setAppLoaded, appLoaded }) => {
   //Check if the user token is in local storage
   useEffect(() => {
@@ -32,6 +33,7 @@ const App = ({ getUser, setAppLoaded, appLoaded }) => {
   return (
     <Fragment>
       <ToastContainer position='bottom-right' />
+      <ModalContainer />
       <Route exact path='/' component={Home} />
       <Route
         path={'/(.+)'}

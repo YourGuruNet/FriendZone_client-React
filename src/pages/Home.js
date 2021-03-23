@@ -2,7 +2,9 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo1 from '../assets/logo1.png';
-const Home = () => {
+import { openModal } from '../components/activities/reducer/ActivitiesActions';
+import { connect } from 'react-redux';
+const Home = ({ openModal }) => {
   const localToken = window.localStorage.getItem('login');
   return (
     <Container>
@@ -15,12 +17,12 @@ const Home = () => {
           </Link>
         ) : (
           <Fragment>
-            <Link className='home_button' to='/login'>
+            <button className='home_button' onClick={() => openModal()}>
               Register
-            </Link>
-            <Link className='home_button' to='/login'>
+            </button>
+            <button className='home_button' onClick={() => openModal()}>
               Login
-            </Link>
+            </button>
           </Fragment>
         )}
       </div>
@@ -28,7 +30,16 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = ({ activitiesState: { modal } }) => {
+  return { modal };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openModal: () => dispatch(openModal()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 const Container = styled.div`
   height: 100vh;
