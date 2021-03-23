@@ -140,6 +140,18 @@ export const setAppLoaded = () => {
   return { type: activitiesConst.SET_APP_LOADING };
 };
 
+export const registration = (user) => {
+  return async function (dispatch) {
+    setToken(null);
+    await Account.register(user).then((response) => {
+      setToken(response.token);
+      dispatch({ type: activitiesConst.LOGIN, payload: response });
+      history.push('/activities');
+      dispatch(closeModal());
+    });
+  };
+};
+
 // Modals
 export const openModal = (content) => {
   return async function (dispatch) {
