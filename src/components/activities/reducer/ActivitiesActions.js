@@ -14,6 +14,7 @@ export const activitiesConst = {
   GET_ERROR_MESSAGE: 'GET_ERROR_MESSAGE',
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
+  SET_APP_LOADING: 'SET_APP_LOADING',
 };
 
 export const setLoading = () => {
@@ -102,8 +103,9 @@ export const loadActivityFromBackend = (id) => {
 
 export const login = (user) => {
   return async function (dispatch) {
+    setToken(null);
     await Account.login(user).then((response) => {
-      setToken(response);
+      setToken(response.token);
       dispatch({ type: activitiesConst.LOGIN, payload: response });
       history.push('/activities');
     });
@@ -121,4 +123,16 @@ export const logout = () => {
     dispatch({ type: activitiesConst.LOGOUT });
     history.push('/');
   };
+};
+
+export const getUser = () => {
+  return async function (dispatch) {
+    await Account.current().then((response) => {
+      dispatch({ type: activitiesConst.LOGIN, payload: response });
+    });
+  };
+};
+
+export const setAppLoaded = () => {
+  return { type: activitiesConst.SET_APP_LOADING };
 };

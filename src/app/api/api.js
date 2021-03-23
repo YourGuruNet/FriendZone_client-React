@@ -4,6 +4,12 @@ import { history } from '../..';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+axios.interceptors.request.use((config) => {
+  const token = window.localStorage.getItem('login');
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
 // If getting on of errors show tost component with error message
 axios.interceptors.response.use(
   async (response) => {

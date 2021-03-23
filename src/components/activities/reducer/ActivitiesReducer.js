@@ -1,13 +1,14 @@
 import { activitiesConst } from './ActivitiesActions';
 
 // Setup initial states
-const defaultState = {
+export const defaultState = {
   loading: true,
   activities: [],
   selectedActivity: null,
   editMode: false,
   updateLoading: false,
   loginUser: null,
+  appLoaded: false,
 };
 // Reducer setup
 export const ActivitiesReducer = (state = defaultState, action) => {
@@ -68,6 +69,8 @@ export const ActivitiesReducer = (state = defaultState, action) => {
         ...state,
         loginUser: null,
       };
+    case activitiesConst.SET_APP_LOADING:
+      return { ...state, appLoaded: true };
     default:
       return state;
   }
