@@ -2,7 +2,7 @@ import React from 'react';
 
 const ValidationErrors = ({ errors }) => {
   return (
-    <div>
+    <div style={{ paddingBottom: '0.5rem' }}>
       {errors && (
         <ul>
           {errors.map((err, i) => (

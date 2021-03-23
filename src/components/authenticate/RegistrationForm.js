@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { registration } from '../activities/reducer/ActivitiesActions';
 import * as Yup from 'yup';
+import ValidationErrors from '../errors/ValidationErrors';
 const RegistrationForm = (props) => {
   return (
     <Section>
@@ -18,11 +19,7 @@ const RegistrationForm = (props) => {
             error: null,
           }}
           onSubmit={(values, { setErrors }) =>
-            props
-              .registration(values)
-              .catch((error) =>
-                setErrors({ error: 'Invalid Email or Password!' })
-              )
+            props.registration(values).catch((error) => setErrors({ error }))
           }
           validationSchema={Yup.object().shape({
             displayName: Yup.string().required('Required'),
@@ -31,7 +28,7 @@ const RegistrationForm = (props) => {
             password: Yup.string().required('Required'),
           })}>
           {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
-            <Form onSubmit={handleSubmit} autoComplete='off'>
+            <Form onSubmit={handleSubmit} autoComplete='off' className='error'>
               <div className='inner-wrap'>
                 <label>
                   Display Name
@@ -52,9 +49,7 @@ const RegistrationForm = (props) => {
               </div>
               <ErrorMessage
                 name='error'
-                render={() => (
-                  <label style={{ color: 'red' }}>{errors.error}</label>
-                )}
+                render={() => <ValidationErrors errors={errors.error} />}
               />
               <button
                 disabled={!isValid || !dirty || isSubmitting}
