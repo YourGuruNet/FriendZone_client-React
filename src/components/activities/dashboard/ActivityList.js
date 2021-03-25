@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getActivity } from '../reducer/ActivitiesActions';
 import ActivityListItem from '../dashboard/ActivityListItem';
 
-const ActivityList = ({ activities, getActivity }) => {
+const ActivityList = ({ activities, getActivity, loginUser }) => {
   // this gives an object with dates as keys
   const group = activities.reduce((group, activity) => {
     const dateToString = activity.date.toString();
@@ -35,6 +35,7 @@ const ActivityList = ({ activities, getActivity }) => {
                   key={activity.id}
                   activity={activity}
                   getActivity={getActivity}
+                  loginUser={loginUser}
                 />
               );
             })}
@@ -45,8 +46,8 @@ const ActivityList = ({ activities, getActivity }) => {
   );
 };
 
-const mapStateToProps = ({ activitiesState: { activities } }) => {
-  return { activities };
+const mapStateToProps = ({ activitiesState: { activities, loginUser } }) => {
+  return { activities, loginUser };
 };
 
 // Functions
@@ -59,7 +60,20 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(ActivityList);
 
 const ActivitySection = styled.section`
+  .attendees_host {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.2rem 0.5rem;
+    background-color: red;
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+  }
+  .green {
+    background-color: greenyellow;
+  }
+
   .activity_item {
+    position: relative;
     background-color: var(--baseColor-Light);
     display: flex;
     margin: 1rem;

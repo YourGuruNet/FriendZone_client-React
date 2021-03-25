@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import image from '../../../assets/no-user-image.gif';
 import { Link } from 'react-router-dom';
 const ActivityDetailSideBar = ({ selectedActivity }) => {
-  console.log(selectedActivity.houstUsername);
   return (
     <DetailSection>
       <h1 className='details_title'>
@@ -20,7 +19,7 @@ const ActivityDetailSideBar = ({ selectedActivity }) => {
             </Link>
             <button className='details_button'>Fallow</button>
             {selectedActivity.houstUsername === item.username && (
-              <h1 className='attendees_host'>Activity Houst</h1>
+              <h1 className='attendees_host'>Activity Host</h1>
             )}
           </Container>
         );
