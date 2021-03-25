@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -37,29 +37,42 @@ const ActivityDetails = (props) => {
             <p className='location-item'>{props.selectedActivity.venue}</p>
           </div>
           <div className='button_container'>
-            <button
-              className='details_button'
-              onClick={() => props.setEditMode(true)}>
-              Edit
-            </button>
+            {props.selectedActivity.houstUsername ===
+              props.loginUser.userName && (
+              <Fragment>
+                <button
+                  className='details_button'
+                  onClick={() => props.setEditMode(true)}>
+                  Edit
+                </button>
+                <button
+                  onClick={() =>
+                    props.handleDeleteActivity(props.selectedActivity.id)
+                  }
+                  className='details_button light_detail_button'>
+                  {props.updateLoading ? 'Wait..' : 'Delete'}
+                </button>
+              </Fragment>
+            )}
+
             <Link
               to={`/activity/${props.selectedActivity.id}`}
-              className='details_button'
-              //  onClick={() => props.getActivity(null)}
-            >
+              className='details_button'>
               Full view
             </Link>
-            <button
-              onClick={() =>
-                props.handleDeleteActivity(props.selectedActivity.id)
-              }
-              className='details_button light_detail_button'>
-              {props.updateLoading ? 'Wait..' : 'Delete'}
-            </button>
+            {props.selectedActivity.attendees.some(
+              (a) => a.username === props.loginUser.userName
+            ) ? (
+              <button className='details_button light_detail_button'>
+                not going
+              </button>
+            ) : (
+              <button className='details_button'>Going</button>
+            )}
             <button
               className='details_button light_detail_button'
               onClick={() => props.getActivity(null)}>
-              Cancel
+              Back
             </button>
           </div>
         </div>
@@ -69,9 +82,9 @@ const ActivityDetails = (props) => {
 };
 
 const mapStateToProps = ({
-  activitiesState: { selectedActivity, updateLoading },
+  activitiesState: { selectedActivity, updateLoading, loginUser },
 }) => {
-  return { selectedActivity, updateLoading };
+  return { selectedActivity, updateLoading, loginUser };
 };
 
 // Functions
