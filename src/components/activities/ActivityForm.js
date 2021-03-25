@@ -48,7 +48,7 @@ const ActivityForm = (props) => {
       .required('Required'),
     description: Yup.string()
       .min(3, 'Too Short!')
-      .max(100, 'Too Long!')
+      .max(300, 'Too Long!')
       .required('Required'),
     city: Yup.string()
       .min(3, 'Too Short!')

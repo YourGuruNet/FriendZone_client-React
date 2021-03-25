@@ -3,6 +3,7 @@ import { Popup } from '../../../app/layout/styles';
 import noImage from '../../../assets/no-user-image.gif';
 import { BiTimeFive } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go';
+import ActivityAttendeeList from './ActivityAttendeeList';
 const ActivityListItem = ({ activity, getActivity }) => {
   const date = activity.date.toString();
   return (
@@ -12,6 +13,7 @@ const ActivityListItem = ({ activity, getActivity }) => {
         <div className='text-container'>
           <h1 className='title'>{activity.title}</h1>
           <h1>(Hosted by Arvis Iļjins)</h1>
+          <ActivityAttendeeList attendees={activity.attendees} />
           <p className='date'>
             <BiTimeFive /> <span> {date.slice(0, 10)}</span>{' '}
             {date.slice(11, 16)}
