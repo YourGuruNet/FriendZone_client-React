@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const NavigationBar = (props) => {
-  console.log(props.loginUser);
   //Dark mode
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {

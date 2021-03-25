@@ -8,16 +8,15 @@ const ActivityAttendeeList = ({ attendees }) => {
       <h1>Going:</h1>
       {attendees.map((item, id) => {
         return (
-          <Link to={`/profile/${attendees.userName}`}>
-            <div class='attendee_container'>
+          <Link to={`/profile/${attendees.userName}`} key={id}>
+            <div className='attendee_container'>
               <img
-                key={id}
                 className='attendees_item-image'
                 src={item.image || noImage}
                 alt='profile'
               />
-              <div class='attendees_overlay'>
-                <div class='attendees_text'>{item.displayName}</div>
+              <div className='attendees_overlay'>
+                <div className='attendees_text'>{item.displayName}</div>
               </div>
             </div>
           </Link>

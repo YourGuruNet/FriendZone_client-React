@@ -20,7 +20,7 @@ const FullViewActivity = ({ loadActivityFromBackend, selectedActivity }) => {
   useEffect(() => {
     loadActivityFromBackend(id);
   }, [id, loadActivityFromBackend]);
-
+  console.log(selectedActivity);
   return selectedActivity === null ? (
     <Loading />
   ) : (
@@ -30,7 +30,7 @@ const FullViewActivity = ({ loadActivityFromBackend, selectedActivity }) => {
           <ActivityDetailHeader selectedActivity={selectedActivity} />
           <ActivityDetailChat />
         </div>
-        <ActivityDetailSideBar attendees={selectedActivity.attendees} />
+        <ActivityDetailSideBar selectedActivity={selectedActivity} />
       </Section>
     </Popup>
   );

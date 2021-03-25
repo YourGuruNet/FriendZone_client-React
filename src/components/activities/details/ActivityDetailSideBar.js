@@ -2,22 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import image from '../../../assets/no-user-image.gif';
 import { Link } from 'react-router-dom';
-const ActivityDetailSideBar = ({ attendees }) => {
+const ActivityDetailSideBar = ({ selectedActivity }) => {
+  console.log(selectedActivity.houstUsername);
   return (
     <DetailSection>
-      <h1 className='details_title'> {attendees.length} peoples are going</h1>
-      {attendees.map((item, id) => {
+      <h1 className='details_title'>
+        {selectedActivity.attendees.length} peoples are going
+      </h1>
+      {selectedActivity.attendees.map((item, id) => {
         return (
           <Container key={id}>
-            <Link to={`/profile/${attendees.userName}`}>
+            <Link to={`/profile/${item.userName}`}>
               <img src={item.image || image} alt='Avatar' />
             </Link>
-            <Link
-              className='attendees_link'
-              to={`/profile/${attendees.userName}`}>
+            <Link className='attendees_link' to={`/profile/${item.username}`}>
               {item.displayName}
             </Link>
             <button className='details_button'>Fallow</button>
+            {selectedActivity.houstUsername === item.username && (
+              <h1 className='attendees_host'>Activity Houst</h1>
+            )}
           </Container>
         );
       })}
@@ -31,7 +35,15 @@ const DetailSection = styled.div`
   margin-top: 4.5rem;
 `;
 const Container = styled.div`
-  /* Chat containers */
+  position: relative;
+  .attendees_host {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.2rem 0.5rem;
+    background-color: red;
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+  }
 
   background-color: var(--baseColor-Light);
   border-radius: 0.5rem 0.5rem 0.5rem 0;
