@@ -30,7 +30,7 @@ const FullViewActivity = ({ loadActivityFromBackend, selectedActivity }) => {
           <ActivityDetailHeader selectedActivity={selectedActivity} />
           <ActivityDetailChat />
         </div>
-        <ActivityDetailSideBar />
+        <ActivityDetailSideBar attendees={selectedActivity.attendees} />
       </Section>
     </Popup>
   );

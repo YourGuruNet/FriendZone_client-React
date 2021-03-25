@@ -1,25 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import image from '../../../assets/no-user-image.gif';
-const ActivityDetailSideBar = () => {
+import { Link } from 'react-router-dom';
+const ActivityDetailSideBar = ({ attendees }) => {
   return (
     <DetailSection>
-      <h1 className='details_title'> 3 peoples are going</h1>
-      <Container>
-        <img src={image} alt='Avatar' />
-        <p>Arvis Iļjins</p>
-        <button className='details_button'>Fallow</button>
-      </Container>
-      <Container>
-        <img src={image} alt='Avatar' />
-        <p>Arvis Iļjins</p>
-        <button className='details_button'>Fallow</button>
-      </Container>
-      <Container>
-        <img src={image} alt='Avatar' />
-        <p>Arvis Iļjins</p>
-        <button className='details_button'>Fallow</button>
-      </Container>
+      <h1 className='details_title'> {attendees.length} peoples are going</h1>
+      {attendees.map((item, id) => {
+        return (
+          <Container key={id}>
+            <Link to={`/profile/${attendees.userName}`}>
+              <img src={item.image || image} alt='Avatar' />
+            </Link>
+            <Link
+              className='attendees_link'
+              to={`/profile/${attendees.userName}`}>
+              {item.displayName}
+            </Link>
+            <button className='details_button'>Fallow</button>
+          </Container>
+        );
+      })}
     </DetailSection>
   );
 };
@@ -36,11 +37,18 @@ const Container = styled.div`
   border-radius: 0.5rem 0.5rem 0.5rem 0;
   padding: 1rem;
   margin: 1rem 0;
+  height: 8rem;
 
-  p {
+  .attendees_link {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
     font-size: 1.5rem;
-    padding: 1rem;
-    padding-left: 2rem;
+    padding-bottom: 0.5rem;
+    transition: all 0.2s;
+    :hover {
+      transform: scale(1.2);
+    }
   }
 
   /* Style images */
