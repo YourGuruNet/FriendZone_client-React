@@ -1,23 +1,26 @@
 import React from 'react';
 import noImage from '../../../assets/no-user-image.gif';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 const ActivityAttendeeList = ({ attendees }) => {
   return (
     <AttendeesSection>
       <h1>Going:</h1>
       {attendees.map((item, id) => {
         return (
-          <div class='attendee_container'>
-            <img
-              key={id}
-              className='attendees_item-image'
-              src={noImage}
-              alt='profile'
-            />
-            <div class='attendees_overlay'>
-              <div class='attendees_text'>{item.displayName}</div>
+          <Link to={`/profile/${attendees.userName}`}>
+            <div class='attendee_container'>
+              <img
+                key={id}
+                className='attendees_item-image'
+                src={item.image || noImage}
+                alt='profile'
+              />
+              <div class='attendees_overlay'>
+                <div class='attendees_text'>{item.displayName}</div>
+              </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </AttendeesSection>
