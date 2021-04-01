@@ -44,6 +44,7 @@ const UserGreeting = styled.section`
   position: fixed;
   z-index: 99999999;
   width: 100vw;
+  padding-right: 1rem;
   background-color: var(--baseColor-Dark);
   .container {
     position: relative;

@@ -5,6 +5,7 @@ import {
   getActivity,
   handleDeleteActivity,
   setEditMode,
+  updateAttendance,
 } from './reducer/ActivitiesActions';
 
 import { Background, Popup } from '../../app/layout/styles';
@@ -63,11 +64,27 @@ const ActivityDetails = (props) => {
             {props.selectedActivity.attendees.some(
               (a) => a.username === props.loginUser.userName
             ) ? (
-              <button className='details_button light_detail_button'>
+              <button
+                onClick={() =>
+                  props.updateAttendance(
+                    props.selectedActivity.id,
+                    props.loginUser.userName
+                  )
+                }
+                className='details_button light_detail_button'>
                 not going
               </button>
             ) : (
-              <button className='details_button'>Going</button>
+              <button
+                onClick={() =>
+                  props.updateAttendance(
+                    props.selectedActivity.id,
+                    props.loginUser.userName
+                  )
+                }
+                className='details_button'>
+                Going
+              </button>
             )}
             <button
               className='details_button light_detail_button'
@@ -93,6 +110,8 @@ const mapDispatchToProps = (dispatch) => {
     setEditMode: (boole) => dispatch(setEditMode(boole)),
     getActivity: (activity) => dispatch(getActivity(activity)),
     handleDeleteActivity: (id) => dispatch(handleDeleteActivity(id)),
+    updateAttendance: (id, userName) =>
+      dispatch(updateAttendance(id, userName)),
   };
 };
 

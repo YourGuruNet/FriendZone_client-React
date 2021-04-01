@@ -17,6 +17,7 @@ export const activitiesConst = {
   SET_APP_LOADING: 'SET_APP_LOADING',
   OPEN_MODAL: 'OPEN_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
+  TOGGLE_GOING: 'TOGGLE_GOING',
 };
 
 export const setLoading = () => {
@@ -164,4 +165,22 @@ export const openModal = (content) => {
 
 export const closeModal = () => {
   return { type: activitiesConst.CLOSE_MODAL };
+};
+
+export const updateAttendance = (id, userName) => {
+  return async function (dispatch) {
+    await ActivitiesApiCall.attend(id).then(() => {
+      dispatch({
+        type: activitiesConst.TOGGLE_GOING,
+        id: id,
+        payload: {
+          username: userName,
+          displayName: userName,
+          bio: '',
+          image: '',
+        },
+      });
+      dispatch(getActivities());
+    });
+  };
 };

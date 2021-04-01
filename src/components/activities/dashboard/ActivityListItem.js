@@ -5,8 +5,6 @@ import { BiTimeFive } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go';
 import ActivityAttendeeList from './ActivityAttendeeList';
 const ActivityListItem = ({ activity, getActivity, loginUser }) => {
-  console.log(activity);
-
   const date = activity.date.toString();
   return (
     <Popup>
