@@ -11,32 +11,25 @@ import { Background, Popup } from '../../app/layout/styles';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import DataInput from '../DataInput';
+import { ActivityFormValues } from '../constructors/constructors';
 
 const ActivityForm = (props) => {
   const initializeForm = () => {
     return props.selectedActivity
-      ? props.selectedActivity
-      : {
-          id: '',
-          title: '',
-          category: '',
-          description: '',
-          date: '',
-          city: '',
-          venue: '',
-        };
+      ? new ActivityFormValues(props.selectedActivity)
+      : new ActivityFormValues();
   };
   const [activity] = useState(initializeForm);
   //Submit
   const handleFormSubmit = (activity) => {
-    if (activity.id === '') {
+    if (!activity.id) {
       let newActivity = {
         ...activity,
         id: uuid(),
       };
-      props.handleCreateActivity(newActivity);
+      props.handleCreateActivity(newActivity, props.loginUser);
     } else {
-      props.handleEditActivity(activity);
+      props.handleEditActivity(props.selectedActivity, activity);
     }
   };
 
@@ -177,18 +170,19 @@ const ActivityForm = (props) => {
   );
 };
 const mapStateToProps = ({
-  activitiesState: { selectedActivity, updateLoading },
+  activitiesState: { selectedActivity, updateLoading, loginUser },
 }) => {
-  return { selectedActivity, updateLoading };
+  return { selectedActivity, updateLoading, loginUser };
 };
 
 // Functions
 const mapDispatchToProps = (dispatch) => {
   return {
     setEditMode: (boole) => dispatch(setEditMode(boole)),
-    handleCreateActivity: (activity) =>
-      dispatch(handleCreateActivity(activity)),
-    handleEditActivity: (activity) => dispatch(handleEditActivity(activity)),
+    handleCreateActivity: (activity, loginUser) =>
+      dispatch(handleCreateActivity(activity, loginUser)),
+    handleEditActivity: (selectedActivity, activity) =>
+      dispatch(handleEditActivity(selectedActivity, activity)),
   };
 };
 

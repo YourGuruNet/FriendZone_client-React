@@ -1,5 +1,6 @@
 import { history } from '../../..';
 import { Account, ActivitiesApiCall } from '../../../app/api/api';
+import { Activity } from '../../constructors/constructors';
 
 export const activitiesConst = {
   SET_LOADING: 'SET_LOADING',
@@ -70,25 +71,35 @@ export const handleDeleteActivity = (id) => {
 };
 
 // Form
-export const handleEditActivity = (activity) => {
+export const handleEditActivity = (selectedActivity, activity) => {
+  let updatedActivity = { ...selectedActivity, ...activity };
   return async function (dispatch) {
     dispatch(setUpdateLoading());
     await ActivitiesApiCall.update(activity).then(() => {
       dispatch({
         type: activitiesConst.HANDLE_EDIT_ACTIVITY,
-        payload: activity,
+        payload: updatedActivity,
       });
     });
   };
 };
 
-export const handleCreateActivity = (activity) => {
+export const handleCreateActivity = (activity, loginUser) => {
+  const attendee = {
+    username: loginUser.userName,
+    displayName: loginUser.userName,
+    bio: '',
+    image: '',
+  };
+  const newActivity = new Activity(activity, loginUser);
+  newActivity.attendees = [attendee];
+
   return async function (dispatch) {
     dispatch(setUpdateLoading());
-    await ActivitiesApiCall.create(activity).then(() => {
+    await ActivitiesApiCall.create(newActivity).then(() => {
       dispatch({
         type: activitiesConst.HANDLE_CREATE_ACTIVITY,
-        payload: activity,
+        payload: newActivity,
       });
     });
   };
